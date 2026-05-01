@@ -1,0 +1,1 @@
+ELECTION_ZNODE              = "/election"

@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 PYTHONPATH=/
+
+WORKDIR /e_commerce_app
+
+# Install Python deps first (better layer caching)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy your whole app
+COPY . .
+
+# Expose service ports (optional, helpful locally)
+EXPOSE 5001 5002 5003
+
+# Run all services via launcher, works because PYTHONPATH=/ exposes /e_commerce_app
+ENTRYPOINT ["python", "-m", "e_commerce_app.launcher"]

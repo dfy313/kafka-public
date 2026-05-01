@@ -1,0 +1,229 @@
+2025-11-20 10:19:50,615 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@177] - Reading configuration from: /Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../conf/zoo.cfg
+2025-11-20 10:19:50,617 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@440] - clientPortAddress is 0.0.0.0:2181
+2025-11-20 10:19:50,618 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@444] - secureClientPort is not set
+2025-11-20 10:19:50,618 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@460] - observerMasterPort is not set
+2025-11-20 10:19:50,618 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@477] - metricsProvider.className is org.apache.zookeeper.metrics.impl.DefaultMetricsProvider
+2025-11-20 10:19:50,618 [myid:] - INFO  [main:o.a.z.s.DatadirCleanupManager@78] - autopurge.snapRetainCount set to 3
+2025-11-20 10:19:50,618 [myid:] - INFO  [main:o.a.z.s.DatadirCleanupManager@79] - autopurge.purgeInterval set to 0
+2025-11-20 10:19:50,618 [myid:] - INFO  [main:o.a.z.s.DatadirCleanupManager@101] - Purge task is not scheduled.
+2025-11-20 10:19:50,618 [myid:] - WARN  [main:o.a.z.s.q.QuorumPeerMain@139] - Either no config or no quorum defined in config, running in standalone mode
+2025-11-20 10:19:50,619 [myid:] - INFO  [main:o.a.z.j.ManagedUtil@46] - Log4j 1.2 jmx support not found; jmx disabled.
+2025-11-20 10:19:50,619 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@177] - Reading configuration from: /Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../conf/zoo.cfg
+2025-11-20 10:19:50,619 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@440] - clientPortAddress is 0.0.0.0:2181
+2025-11-20 10:19:50,619 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@444] - secureClientPort is not set
+2025-11-20 10:19:50,619 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@460] - observerMasterPort is not set
+2025-11-20 10:19:50,619 [myid:] - INFO  [main:o.a.z.s.q.QuorumPeerConfig@477] - metricsProvider.className is org.apache.zookeeper.metrics.impl.DefaultMetricsProvider
+2025-11-20 10:19:50,619 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServerMain@123] - Starting server
+2025-11-20 10:19:50,624 [myid:] - INFO  [main:o.a.z.s.ServerMetrics@64] - ServerMetrics initialized with provider org.apache.zookeeper.metrics.impl.DefaultMetricsProvider@5f8e8a9d
+2025-11-20 10:19:50,626 [myid:] - INFO  [main:o.a.z.s.a.DigestAuthenticationProvider@47] - ACL digest algorithm is: SHA1
+2025-11-20 10:19:50,626 [myid:] - INFO  [main:o.a.z.s.a.DigestAuthenticationProvider@61] - zookeeper.DigestAuthenticationProvider.enabled = true
+2025-11-20 10:19:50,627 [myid:] - INFO  [main:o.a.z.s.p.FileTxnSnapLog@124] - zookeeper.snapshot.trust.empty : false
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] - 
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -   ______                  _                                          
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -  |___  /                 | |                                         
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -     / /    ___     ___   | | __   ___    ___   _ __     ___   _ __   
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -    / /    / _ \   / _ \  | |/ /  / _ \  / _ \ | '_ \   / _ \ | '__|
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -   / /__  | (_) | | (_) | |   <  |  __/ |  __/ | |_) | |  __/ | |    
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -  /_____|  \___/   \___/  |_|\_\  \___|  \___| | .__/   \___| |_|
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -                                               | |                     
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] -                                               |_|                     
+2025-11-20 10:19:50,632 [myid:] - INFO  [main:o.a.z.ZookeeperBanner@42] - 
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:zookeeper.version=3.8.4-9316c2a7a97e1666d8f4593f34dd6fc36ecc436c, built on 2024-02-12 22:16 UTC
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:host.name=10.3.7.79
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:java.version=17.0.9
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:java.vendor=JetBrains s.r.o.
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:java.home=/Users/david/.sdkman/candidates/java/17.0.9-jbr
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:java.class.path=/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../zookeeper-server/target/classes:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../build/classes:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../zookeeper-server/target/lib/*.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../build/lib/*.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/zookeeper-prometheus-metrics-3.8.4.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/zookeeper-jute-3.8.4.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/zookeeper-3.8.4.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/snappy-java-1.1.10.5.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/slf4j-api-1.7.30.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/simpleclient-0.9.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/simpleclient_servlet-0.9.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/simpleclient_hotspot-0.9.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/simpleclient_common-0.9.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-transport-native-unix-common-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-transport-native-epoll-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-transport-classes-epoll-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-transport-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-resolver-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-handler-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-common-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-codec-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/netty-buffer-4.1.105.Final.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/metrics-core-4.1.12.1.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/logback-core-1.2.13.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/logback-classic-1.2.13.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jline-2.14.6.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jetty-util-ajax-9.4.53.v20231009.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jetty-util-9.4.53.v20231009.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jetty-servlet-9.4.53.v20231009.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jetty-server-9.4.53.v20231009.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jetty-security-9.4.53.v20231009.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jetty-io-9.4.53.v20231009.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jetty-http-9.4.53.v20231009.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/javax.servlet-api-3.1.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jackson-databind-2.15.2.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jackson-core-2.15.2.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/jackson-annotations-2.15.2.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/commons-io-2.11.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/commons-cli-1.5.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../lib/audience-annotations-0.12.0.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../zookeeper-*.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../zookeeper-server/src/main/resources/lib/*.jar:/Users/david/Desktop/kafka_demo/apache-zookeeper-3.8.4-bin/bin/../conf:
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:java.library.path=/Users/david/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:java.io.tmpdir=/var/folders/6k/s7h5d4vn6j564xxy4zrqnf5w0000gn/T/
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:java.compiler=<NA>
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:os.name=Mac OS X
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:os.arch=aarch64
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:os.version=15.6.1
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:user.name=david
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:user.home=/Users/david
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:user.dir=/Users/david/Desktop/kafka_demo
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:os.memory.free=111MB
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:os.memory.max=1000MB
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.Environment@98] - Server environment:os.memory.total=128MB
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@140] - zookeeper.enableEagerACLCheck = false
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@153] - zookeeper.digest.enabled = true
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@157] - zookeeper.closeSessionTxn.enabled = true
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@1510] - zookeeper.flushDelay = 0 ms
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@1519] - zookeeper.maxWriteQueuePollTime = 0 ms
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@1528] - zookeeper.maxBatchSize=1000
+2025-11-20 10:19:50,654 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@275] - zookeeper.intBufferStartingSizeBytes = 1024
+2025-11-20 10:19:50,655 [myid:] - INFO  [main:o.a.z.s.BlueThrottle@141] - Weighed connection throttling is disabled
+2025-11-20 10:19:50,655 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@1311] - minSessionTimeout set to 4000 ms
+2025-11-20 10:19:50,655 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@1320] - maxSessionTimeout set to 40000 ms
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.ResponseCache@45] - getData response cache size is initialized with value 400.
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.ResponseCache@45] - getChildren response cache size is initialized with value 400.
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.u.RequestPathMetricsCollector@109] - zookeeper.pathStats.slotCapacity = 60
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.u.RequestPathMetricsCollector@110] - zookeeper.pathStats.slotDuration = 15
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.u.RequestPathMetricsCollector@111] - zookeeper.pathStats.maxDepth = 6
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.u.RequestPathMetricsCollector@112] - zookeeper.pathStats.initialDelay = 5
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.u.RequestPathMetricsCollector@113] - zookeeper.pathStats.delay = 5
+2025-11-20 10:19:50,656 [myid:] - INFO  [main:o.a.z.s.u.RequestPathMetricsCollector@114] - zookeeper.pathStats.enabled = false
+2025-11-20 10:19:50,657 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@1547] - The max bytes for all large requests are set to 104857600
+2025-11-20 10:19:50,657 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@1561] - The large request threshold is set to -1
+2025-11-20 10:19:50,657 [myid:] - INFO  [main:o.a.z.s.AuthenticationHelper@66] - zookeeper.enforce.auth.enabled = false
+2025-11-20 10:19:50,657 [myid:] - INFO  [main:o.a.z.s.AuthenticationHelper@67] - zookeeper.enforce.auth.schemes = []
+2025-11-20 10:19:50,657 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@376] - Created server with tickTime 2000 ms minSessionTimeout 4000 ms maxSessionTimeout 40000 ms clientPortListenBacklog -1 datadir ./.tmp/zookeeper/version-2 snapdir ./.tmp/zookeeper/version-2
+2025-11-20 10:19:50,668 [myid:] - INFO  [main:o.e.j.u.l.Log@170] - Logging initialized @5410ms to org.eclipse.jetty.util.log.Slf4jLog
+2025-11-20 10:19:50,699 [myid:] - WARN  [main:o.e.j.s.h.ContextHandler@1662] - o.e.j.s.ServletContextHandler@16eccb2e{/,null,STOPPED} contextPath ends with /*
+2025-11-20 10:19:50,699 [myid:] - WARN  [main:o.e.j.s.h.ContextHandler@1673] - Empty contextPath
+2025-11-20 10:19:50,706 [myid:] - INFO  [main:o.e.j.s.Server@375] - jetty-9.4.53.v20231009; built: 2023-10-09T12:29:09.265Z; git: 27bde00a0b95a1d5bbee0eae7984f891d2d0f8c9; jvm 17.0.9+7-b1087.3
+2025-11-20 10:19:50,721 [myid:] - INFO  [main:o.e.j.s.s.DefaultSessionIdManager@334] - DefaultSessionIdManager workerName=node0
+2025-11-20 10:19:50,721 [myid:] - INFO  [main:o.e.j.s.s.DefaultSessionIdManager@339] - No SessionScavenger set, using defaults
+2025-11-20 10:19:50,722 [myid:] - INFO  [main:o.e.j.s.s.HouseKeeper@132] - node0 Scavenging every 660000ms
+2025-11-20 10:19:50,723 [myid:] - WARN  [main:o.e.j.s.ConstraintSecurityHandler@759] - ServletContext@o.e.j.s.ServletContextHandler@16eccb2e{/,null,STARTING} has uncovered http methods for path: /*
+2025-11-20 10:19:50,727 [myid:] - INFO  [main:o.e.j.s.h.ContextHandler@921] - Started o.e.j.s.ServletContextHandler@16eccb2e{/,null,AVAILABLE}
+2025-11-20 10:19:50,733 [myid:] - INFO  [main:o.e.j.s.AbstractConnector@333] - Started ServerConnector@7674b62c{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2025-11-20 10:19:50,733 [myid:] - INFO  [main:o.e.j.s.Server@415] - Started @5476ms
+2025-11-20 10:19:50,733 [myid:] - INFO  [main:o.a.z.s.a.JettyAdminServer@196] - Started AdminServer on address 0.0.0.0, port 8080 and command URL /commands
+2025-11-20 10:19:50,736 [myid:] - INFO  [main:o.a.z.s.ServerCnxnFactory@169] - Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory
+2025-11-20 10:19:50,736 [myid:] - WARN  [main:o.a.z.s.ServerCnxnFactory@309] - maxCnxns is not configured, using default value 0.
+2025-11-20 10:19:50,737 [myid:] - INFO  [main:o.a.z.s.NIOServerCnxnFactory@652] - Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 16 worker threads, and 64 kB direct buffers.
+2025-11-20 10:19:50,737 [myid:] - INFO  [main:o.a.z.s.NIOServerCnxnFactory@660] - binding to port 0.0.0.0/0.0.0.0:2181
+2025-11-20 10:19:50,742 [myid:] - INFO  [main:o.a.z.s.w.WatchManagerFactory@42] - Using org.apache.zookeeper.server.watch.WatchManager as watch manager
+2025-11-20 10:19:50,742 [myid:] - INFO  [main:o.a.z.s.w.WatchManagerFactory@42] - Using org.apache.zookeeper.server.watch.WatchManager as watch manager
+2025-11-20 10:19:50,742 [myid:] - INFO  [main:o.a.z.s.ZKDatabase@132] - zookeeper.snapshotSizeFactor = 0.33
+2025-11-20 10:19:50,742 [myid:] - INFO  [main:o.a.z.s.ZKDatabase@152] - zookeeper.commitLogCount=500
+2025-11-20 10:19:50,745 [myid:] - INFO  [main:o.a.z.s.p.SnapStream@61] - zookeeper.snapshot.compression.method = CHECKED
+2025-11-20 10:19:50,745 [myid:] - INFO  [main:o.a.z.s.p.FileTxnSnapLog@479] - Snapshotting: 0x0 to ./.tmp/zookeeper/version-2/snapshot.0
+2025-11-20 10:19:50,746 [myid:] - INFO  [main:o.a.z.s.ZKDatabase@289] - Snapshot loaded in 4 ms, highest zxid is 0x0, digest is 1371985504
+2025-11-20 10:19:50,746 [myid:] - INFO  [main:o.a.z.s.p.FileTxnSnapLog@479] - Snapshotting: 0x0 to ./.tmp/zookeeper/version-2/snapshot.0
+2025-11-20 10:19:50,747 [myid:] - INFO  [main:o.a.z.s.ZooKeeperServer@558] - Snapshot taken in 0 ms
+2025-11-20 10:19:50,752 [myid:] - INFO  [ProcessThread(sid:0 cport:2181)::o.a.z.s.PrepRequestProcessor@138] - PrepRequestProcessor (sid:0) started, reconfigEnabled=false
+2025-11-20 10:19:50,752 [myid:] - INFO  [main:o.a.z.s.RequestThrottler@75] - zookeeper.request_throttler.shutdownTimeout = 10000 ms
+2025-11-20 10:19:50,757 [myid:] - INFO  [main:o.a.z.s.ContainerManager@84] - Using checkIntervalMs=60000 maxPerMinute=10000 maxNeverUsedIntervalMs=0
+2025-11-20 10:19:50,758 [myid:] - INFO  [main:o.a.z.a.ZKAuditProvider@42] - ZooKeeper audit is disabled.
+2025-11-20 10:20:00,674 [myid:] - INFO  [NIOWorkerThread-1:o.a.z.s.c.FourLetterCommands@223] - The list of known four letter word commands is : [{1936881266=srvr, 1937006964=stat, 2003003491=wchc, 1685417328=dump, 1668445044=crst, 1936880500=srst, 1701738089=envi, 1668247142=conf, -720899=telnet close, 1751217000=hash, 2003003507=wchs, 2003003504=wchp, 1684632179=dirs, 1668247155=cons, 1835955314=mntr, 1769173615=isro, 1920298859=ruok, 1735683435=gtmk, 1937010027=stmk}]
+2025-11-20 10:20:00,675 [myid:] - INFO  [NIOWorkerThread-1:o.a.z.s.c.FourLetterCommands@224] - The list of enabled four letter word commands is : [[srvr]]
+2025-11-20 10:20:00,675 [myid:] - INFO  [NIOWorkerThread-1:o.a.z.s.NIOServerCnxn@525] - Processing srvr command from /127.0.0.1:57815
+2025-11-20 10:20:52,142 [myid:] - INFO  [SyncThread:0:o.a.z.s.p.FileTxnLog@285] - Creating new log file: log.1
+2025-11-20 11:02:36,122 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:58569, session = 0x1006657eefb0001
+2025-11-20 11:02:36,572 [myid:] - INFO  [NIOWorkerThread-3:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:58589, session = 0x1006657eefb0002
+2025-11-20 11:12:26,601 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:58709, session = 0x1006657eefb0003
+2025-11-20 11:12:27,117 [myid:] - INFO  [NIOWorkerThread-13:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:58711, session = 0x1006657eefb0004
+2025-11-20 12:10:03,158 [myid:] - INFO  [NIOWorkerThread-5:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:58939, session = 0x1006657eefb0005
+2025-11-20 12:10:03,791 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:58942, session = 0x1006657eefb0006
+2025-11-20 12:10:42,715 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:58959, session = 0x1006657eefb0008
+2025-11-20 12:10:43,250 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:58956, session = 0x1006657eefb0007
+2025-11-20 12:15:53,813 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59032, session = 0x1006657eefb000a
+2025-11-20 12:15:54,398 [myid:] - INFO  [NIOWorkerThread-15:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:59030, session = 0x1006657eefb0009
+2025-11-20 12:16:35,097 [myid:] - INFO  [NIOWorkerThread-15:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59042, session = 0x1006657eefb000b
+2025-11-20 12:16:47,097 [myid:] - INFO  [NIOWorkerThread-11:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59044, session = 0x1006657eefb000c
+2025-11-20 12:16:55,223 [myid:] - INFO  [NIOWorkerThread-4:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:59049, session = 0x1006657eefb000d
+2025-11-20 12:16:55,698 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59051, session = 0x1006657eefb000e
+2025-11-20 12:24:36,089 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59165, session = 0x1006657eefb000f
+2025-11-20 12:24:43,483 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59170, session = 0x1006657eefb0010
+2025-11-20 12:52:20,912 [myid:] - INFO  [NIOWorkerThread-4:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:59482, session = 0x1006657eefb0011
+2025-11-20 12:55:37,250 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:59541, session = 0x1006657eefb0012
+2025-11-20 12:55:51,618 [myid:] - INFO  [NIOWorkerThread-6:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59549, session = 0x1006657eefb0013
+2025-11-20 13:00:07,058 [myid:] - INFO  [NIOWorkerThread-1:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:59589, session = 0x1006657eefb0014
+2025-11-20 13:00:19,099 [myid:] - INFO  [NIOWorkerThread-5:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:59598, session = 0x1006657eefb0015
+2025-11-21 05:59:59,464 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61305, session = 0x1006657eefb0016
+2025-11-21 06:13:53,622 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:61505, session = 0x1006657eefb0017
+2025-11-21 06:19:06,485 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:57827, session = 0x1006657eefb0000
+2025-11-21 06:19:07,166 [myid:] - INFO  [NIOWorkerThread-4:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61618, session = 0x1006657eefb0018
+2025-11-21 06:19:33,976 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0000, timeout of 30000ms exceeded
+2025-11-21 06:36:54,981 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61914, session = 0x1006657eefb001a
+2025-11-21 06:39:34,493 [myid:] - INFO  [NIOWorkerThread-2:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61626, session = 0x1006657eefb0019
+2025-11-21 06:39:34,681 [myid:] - INFO  [NIOWorkerThread-3:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61937, session = 0x1006657eefb001b
+2025-11-21 06:39:58,003 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0019, timeout of 30000ms exceeded
+2025-11-21 06:40:55,052 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:61972, session = 0x1006657eefb001d
+2025-11-21 06:40:57,134 [myid:] - INFO  [NIOWorkerThread-2:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61956, session = 0x1006657eefb001c
+2025-11-21 06:41:18,002 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb001c, timeout of 30000ms exceeded
+2025-11-21 07:24:17,679 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:62122, session = 0x1006657eefb0020
+2025-11-21 07:24:18,284 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62104, session = 0x1006657eefb001f
+2025-11-21 07:49:51,097 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:62561, session = 0x1006657eefb0021
+2025-11-21 07:51:49,150 [myid:] - INFO  [NIOWorkerThread-3:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62571, session = 0x1006657eefb0022
+2025-11-21 07:56:03,975 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:62665, session = 0x1006657eefb0023
+2025-11-21 07:58:13,869 [myid:] - INFO  [NIOWorkerThread-6:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62711, session = 0x1006657eefb0024
+2025-11-21 08:00:19,307 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62736, session = 0x1006657eefb0025
+2025-11-21 08:02:05,958 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61986, session = 0x1006657eefb001e
+2025-11-21 08:02:29,338 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb001e, timeout of 30000ms exceeded
+2025-11-21 08:02:42,697 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:62802, session = 0x1006657eefb0027
+2025-11-21 08:04:45,800 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62816, session = 0x1006657eefb0028
+2025-11-21 08:07:14,616 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62857, session = 0x1006657eefb0029
+2025-11-21 08:07:15,866 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62799, session = 0x1006657eefb0026
+2025-11-21 08:07:45,336 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0026, timeout of 30000ms exceeded
+2025-11-21 08:08:33,060 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:62877, session = 0x1006657eefb002b
+2025-11-21 08:09:10,417 [myid:] - INFO  [NIOWorkerThread-11:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:62894, session = 0x1006657eefb002c
+2025-11-21 08:10:42,419 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62915, session = 0x1006657eefb002d
+2025-11-21 08:42:26,978 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:62863, session = 0x1006657eefb002a
+2025-11-21 08:42:29,643 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:63427, session = 0x1006657eefb002e
+2025-11-21 08:42:55,345 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb002a, timeout of 30000ms exceeded
+2025-11-21 08:46:53,478 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:63494, session = 0x1006657eefb0030
+2025-11-21 08:46:54,438 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:63461, session = 0x1006657eefb002f
+2025-11-21 08:47:19,342 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb002f, timeout of 30000ms exceeded
+2025-11-21 08:53:37,343 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0032, timeout of 10000ms exceeded
+2025-11-21 08:54:58,438 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:63704, session = 0x1006657eefb0033
+2025-11-21 08:57:44,778 [myid:] - INFO  [NIOWorkerThread-4:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:63744, session = 0x1006657eefb0035
+2025-11-21 08:57:45,259 [myid:] - INFO  [NIOWorkerThread-11:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:63713, session = 0x1006657eefb0034
+2025-11-21 09:54:53,439 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:64021, session = 0x1006657eefb0036
+2025-11-21 10:01:10,425 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:64102, session = 0x1006657eefb0037
+2025-11-21 10:01:11,914 [myid:] - INFO  [NIOWorkerThread-2:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:63522, session = 0x1006657eefb0031
+2025-11-21 10:01:40,473 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0031, timeout of 30000ms exceeded
+2025-11-21 10:07:52,830 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:64201, session = 0x1006657eefb0039
+2025-11-21 10:07:53,568 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:64220, session = 0x1006657eefb003a
+2025-11-21 10:29:05,764 [myid:] - INFO  [NIOWorkerThread-15:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:64424, session = 0x1006657eefb003b
+2025-11-21 10:30:20,389 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:64440, session = 0x1006657eefb003c
+2025-11-21 10:30:30,688 [myid:] - INFO  [NIOWorkerThread-1:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:64463, session = 0x1006657eefb003d
+2025-11-22 05:48:00,286 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:50185, session = 0x1006657eefb003f
+2025-11-22 05:48:01,044 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:50174, session = 0x1006657eefb003e
+2025-11-22 06:00:02,926 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:64151, session = 0x1006657eefb0038
+2025-11-22 06:00:26,317 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0038, timeout of 30000ms exceeded
+2025-11-22 06:00:30,707 [myid:] - WARN  [SyncThread:0:o.a.z.s.p.FileTxnLog@394] - fsync-ing the write ahead log in SyncThread:0 took 1786ms which will adversely effect operation latency.File size is 67108880 bytes. See the ZooKeeper troubleshooting guide
+2025-11-22 06:07:55,966 [myid:] - INFO  [NIOWorkerThread-15:o.a.z.s.NIOServerCnxn@525] - Processing srvr command from /127.0.0.1:50679
+2025-11-22 06:20:20,242 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@525] - Processing srvr command from /127.0.0.1:50919
+2025-11-22 06:22:17,439 [myid:] - INFO  [NIOWorkerThread-6:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:50948, session = 0x1006657eefb0042
+2025-11-22 06:22:18,156 [myid:] - INFO  [NIOWorkerThread-4:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:50943, session = 0x1006657eefb0041
+2025-11-22 06:28:39,726 [myid:] - INFO  [NIOWorkerThread-11:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:51048, session = 0x1006657eefb0043
+2025-11-22 06:29:50,148 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:51067, session = 0x1006657eefb0044
+2025-11-22 06:34:31,024 [myid:] - INFO  [NIOWorkerThread-3:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51173, session = 0x1006657eefb0045
+2025-11-22 06:34:31,627 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51178, session = 0x1006657eefb0046
+2025-11-22 07:22:25,123 [myid:] - INFO  [NIOWorkerThread-1:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51383, session = 0x1006657eefb0047
+2025-11-22 07:22:25,950 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:51393, session = 0x1006657eefb0048
+2025-11-22 07:29:08,845 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51474, session = 0x1006657eefb0049
+2025-11-22 07:30:59,402 [myid:] - INFO  [NIOWorkerThread-1:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:51533, session = 0x1006657eefb004b
+2025-11-22 07:30:59,912 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51490, session = 0x1006657eefb004a
+2025-11-22 07:40:01,378 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51664, session = 0x1006657eefb004c
+2025-11-22 07:40:21,049 [myid:] - INFO  [NIOWorkerThread-13:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51720, session = 0x1006657eefb004e
+2025-11-22 07:40:52,696 [myid:] - INFO  [NIOWorkerThread-3:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:51674, session = 0x1006657eefb004d
+2025-11-22 07:40:53,380 [myid:] - INFO  [NIOWorkerThread-6:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:51730, session = 0x1006657eefb004f
+2025-11-22 10:05:25,990 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53224, session = 0x1006657eefb0050
+2025-11-22 10:06:11,696 [myid:] - INFO  [NIOWorkerThread-2:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:50924, session = 0x1006657eefb0040
+2025-11-22 10:06:35,817 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0040, timeout of 30000ms exceeded
+2025-11-22 10:15:07,563 [myid:] - INFO  [NIOWorkerThread-13:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:53460, session = 0x1006657eefb0053
+2025-11-22 10:15:08,357 [myid:] - INFO  [NIOWorkerThread-5:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53457, session = 0x1006657eefb0052
+2025-11-22 10:19:48,609 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53514, session = 0x1006657eefb0055
+2025-11-22 10:19:49,116 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:53511, session = 0x1006657eefb0054
+2025-11-22 10:22:53,398 [myid:] - INFO  [NIOWorkerThread-15:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53570, session = 0x1006657eefb0057
+2025-11-22 10:22:53,882 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53568, session = 0x1006657eefb0056
+2025-11-22 10:23:52,697 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53591, session = 0x1006657eefb0058
+2025-11-22 10:23:53,212 [myid:] - INFO  [NIOWorkerThread-2:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53593, session = 0x1006657eefb0059
+2025-11-23 07:39:31,704 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:54910, session = 0x1006657eefb005a
+2025-11-23 07:39:32,459 [myid:] - INFO  [NIOWorkerThread-11:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:54913, session = 0x1006657eefb005b
+2025-11-23 07:39:49,193 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:53451, session = 0x1006657eefb0051
+2025-11-23 07:40:12,853 [myid:] - INFO  [SessionTracker:o.a.z.s.ZooKeeperServer@643] - Expiring session 0x1006657eefb0051, timeout of 30000ms exceeded
+2025-11-23 07:49:13,024 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:55952, session = 0x1006657eefb005d
+2025-11-23 08:13:47,311 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:57615, session = 0x1006657eefb005f
+2025-11-23 08:13:47,869 [myid:] - INFO  [NIOWorkerThread-5:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:55954, session = 0x1006657eefb005e
+2025-11-23 09:15:27,555 [myid:] - INFO  [NIOWorkerThread-11:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61166, session = 0x1006657eefb0061
+2025-11-23 09:15:33,960 [myid:] - INFO  [NIOWorkerThread-4:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:61157, session = 0x1006657eefb0060
+2025-11-23 09:37:05,297 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61197, session = 0x1006657eefb0062
+2025-11-23 09:42:24,668 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:61576, session = 0x1006657eefb0063
+2025-11-23 09:47:49,627 [myid:] - INFO  [NIOWorkerThread-16:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:61580, session = 0x1006657eefb0064
+2025-11-23 09:47:54,330 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:62866, session = 0x1006657eefb0065
+2025-11-23 10:01:16,713 [myid:] - INFO  [NIOWorkerThread-12:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:63306, session = 0x1006657eefb0066
+2025-11-23 10:12:05,275 [myid:] - INFO  [NIOWorkerThread-7:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:63308, session = 0x1006657eefb0067
+2025-11-23 10:19:51,446 [myid:] - INFO  [NIOWorkerThread-3:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:49186, session = 0x1006657eefb0068
+2025-11-23 12:14:04,745 [myid:] - INFO  [NIOWorkerThread-2:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:49190, session = 0x1006657eefb0069
+2025-11-23 12:14:05,251 [myid:] - INFO  [NIOWorkerThread-6:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:51078, session = 0x1006657eefb006a
+2025-11-23 12:14:54,112 [myid:] - INFO  [NIOWorkerThread-14:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:55105, session = 0x1006657eefb006b
+2025-11-23 12:14:54,681 [myid:] - INFO  [NIOWorkerThread-9:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:55108, session = 0x1006657eefb006c
+2025-11-23 12:21:23,209 [myid:] - INFO  [NIOWorkerThread-2:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /127.0.0.1:55133, session = 0x1006657eefb006d
+2025-11-23 12:30:27,493 [myid:] - INFO  [NIOWorkerThread-10:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:55135, session = 0x1006657eefb006e
+2025-11-23 12:30:28,222 [myid:] - INFO  [NIOWorkerThread-8:o.a.z.s.NIOServerCnxn@340] - Unable to read additional data from client, it probably closed the socket: address = /[0:0:0:0:0:0:0:1]:56216, session = 0x1006657eefb006f

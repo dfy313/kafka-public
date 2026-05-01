@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+# Replace "username" with your PyPI username or a unique prefix
+name = "username-kafkaesque"
+# Increment this version before each publish (PEP 440)
+version = "0.1.0"
+description = "A lightweight Kafka-like toolkit featuring a Kafka-style broker with HTTP-based producer and consumer APIs."
+readme = "README.md"
+license = { file = "LICENSE" }
+# Replace with your own name and email
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.9"
+dependencies = ["Flask>=2.3", "requests>=2.31", "kazoo>=2.10"]
+
+[project.scripts]
+kafkaesque = "kafkaesque.__main__:main"
+
+[tool.hatch.build]
+exclude = ["apache-zookeeper-3.8.4-bin/**", "venv/**", "**/__pycache__/**"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["kafkaesque"]
+
+[tool.hatch.build.targets.sdist]
+include = ["kafkaesque/**", "README.md", "LICENSE", "pyproject.toml"]

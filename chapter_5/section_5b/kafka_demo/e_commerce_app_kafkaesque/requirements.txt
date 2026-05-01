@@ -1,0 +1,7 @@
+--index-url https://test.pypi.org/simple
+--extra-index-url https://pypi.org/simple
+
+Flask>=3.0,<4
+PyMySQL>=1.1,<2
+# Replace `username-kafkaesque` with your own PyPI package name
+username-kafkaesque
