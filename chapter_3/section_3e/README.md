@@ -17,12 +17,12 @@ In this section, we introduce **In-Sync Replicas (ISR)** and **High Watermarks (
 ### 🔹 Part 1: ISR & High Watermark Implementation
 
 **Title:** Kafka – Section 3e (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998907#overview)
 
 ### 🔹 Part 2: ISR & High Watermark Validation
 
 **Title:** Kafka – Section 3e (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998909#overview)
 
 # ⚙️ Instructions and Commands
 

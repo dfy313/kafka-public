@@ -9,7 +9,7 @@ In this section, we introduce a **topic registry znode** in ZooKeeper to central
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 4c  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998921#overview)
 
 # ⚙️ Instructions and Commands
 

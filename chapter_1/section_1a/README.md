@@ -5,6 +5,6 @@ In this first section, we’ll introduce the E-Commerce App that we’ll be usin
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 1a  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998817#overview)
 
 <br>

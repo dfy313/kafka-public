@@ -9,7 +9,7 @@ In this section, we scale Kafkaesque from one to **two partitions per topic** an
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 3a  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998871#overview)
 
 # ⚙️ Instructions and Commands
 

@@ -20,17 +20,17 @@ In this section, we introduce the **Kafkaesque Producer API** and integrate it i
 ### 🔹 Part 1: Building the Kafkaesque Producer API
 
 **Title:** Kafka – Section 2b (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998847#overview)
 
 ### 🔹 Part 2: Implementing Broker-Side Produce
 
 **Title:** Kafka – Section 2b (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998849#overview)
 
 ### 🔹 Part 3: Migrating the E-Commerce App to Kafkaesque + Testing
 
 **Title:** Kafka – Section 2b (Part 3)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998855#overview)
 
 # ⚙️ Instructions and Commands
 

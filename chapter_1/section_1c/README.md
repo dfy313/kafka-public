@@ -9,7 +9,7 @@ In this section, we'll use **Docker Compose** to launch a **single-broker Kafka 
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 1c  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998823#overview)
 
 # ⚙️ Instructions and Commands
 

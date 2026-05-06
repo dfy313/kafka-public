@@ -17,12 +17,12 @@ In this section, we scale Kafkaesque by increasing the number of **consumer inst
 ### 🔹 Part 1: Code Changes for Multi-Consumer Support
 
 **Title:** Kafka – Section 3b (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998881#overview)
 
 ### 🔹 Part 2: Validation & Testing
 
 **Title:** Kafka – Section 3b (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998883#overview)
 
 # ⚙️ Instructions and Commands
 

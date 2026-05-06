@@ -9,7 +9,7 @@ In this section, we extend Kafkaesque to support **two brokers** and implement *
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 3c  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998887#overview)
 
 # ⚙️ Instructions and Commands
 

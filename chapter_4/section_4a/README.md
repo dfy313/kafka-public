@@ -17,12 +17,12 @@ In this section, we introduce **ZooKeeper** into our Kafkaesque cluster and impl
 ### 🔹 Part 1: ZooKeeper Setup & Server Initialization
 
 **Title:** Kafka – Section 4a (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998911#overview)
 
 ### 🔹 Part 2: Controller Election with ZooKeeper
 
 **Title:** Kafka – Section 4a (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998913#overview)
 
 # ⚙️ Instructions and Commands
 

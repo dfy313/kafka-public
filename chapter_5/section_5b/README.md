@@ -17,12 +17,12 @@ In this section, we **deploy the full Kafkaesque system to AWS**, including ZooK
 ### 🔹 Part 1: Dockerization & Terraform Infrastructure Setup
 
 **Title:** Kafka – Section 5b (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998961#overview)
 
 ### 🔹 Part 2: AWS Deployment & End-to-End Validation
 
 **Title:** Kafka – Section 5b (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998965#overview)
 
 # ⚙️ Instructions and Commands
 

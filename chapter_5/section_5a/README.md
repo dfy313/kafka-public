@@ -17,12 +17,12 @@ In this section, we **package Kafkaesque** for distribution and publish it to **
 ### 🔹 Part 1: Test PyPI Packaging & Publish Flow
 
 **Title:** Kafka – Section 5a (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998953#overview)
 
 ### 🔹 Part 2: Published Package Validation
 
 **Title:** Kafka – Section 5a (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998955#overview)
 
 # ⚙️ Instructions and Commands
 

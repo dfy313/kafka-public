@@ -9,7 +9,7 @@ In this section, we make replication **peer-aware** by allowing each broker to d
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 4e  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998935#overview)
 
 # ⚙️ Instructions and Commands
 

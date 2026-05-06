@@ -17,12 +17,12 @@ In this section, we introduce **replication** into our Kafkaesque cluster. We im
 ### 🔹 Part 1: Replication Implementation
 
 **Title:** Kafka – Section 3d (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998893#overview)
 
 ### 🔹 Part 2: Replication Validation & Failover Test
 
 **Title:** Kafka – Section 3d (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998899#overview)
 
 # ⚙️ Instructions and Commands
 

@@ -17,12 +17,12 @@ In this section, we introduce **request proxying** so brokers can automatically 
 ### 🔹 Part 1: Request Proxy Implementation
 
 **Title:** Kafka – Section 4f (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998943#overview)
 
 ### 🔹 Part 2: Request Proxy Validation
 
 **Title:** Kafka – Section 4f (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998945#overview)
 
 # ⚙️ Instructions and Commands
 

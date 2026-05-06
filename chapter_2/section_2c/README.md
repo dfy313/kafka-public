@@ -20,17 +20,17 @@ In this section, we introduce the **Kafkaesque Consumer API** and wire it into o
 ### 🔹 Part 1: Kafkaesque Consumer API
 
 **Title:** Kafka – Section 2c (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998857#overview)
 
 ### 🔹 Part 2: Broker-Side Consumer Support
 
 **Title:** Kafka – Section 2c (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998859#overview)
 
 ### 🔹 Part 3: App Integration and Validation
 
 **Title:** Kafka – Section 2c (Part 3)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998863#overview)
 
 # ⚙️ Instructions and Commands
 

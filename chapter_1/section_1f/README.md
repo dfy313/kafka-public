@@ -11,7 +11,7 @@ This highlights the power of event-driven design — new consumers can react to 
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 1f  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998835#overview)
 
 # ⚙️ Instructions and Commands
 

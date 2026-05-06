@@ -9,7 +9,7 @@ In this section, we introduce a **partition assignments znode** in ZooKeeper to 
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 4d  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998927#overview)
 
 # ⚙️ Instructions and Commands
 

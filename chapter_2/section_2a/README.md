@@ -9,7 +9,7 @@ In this section, we begin building **Kafkaesque** — our own Kafka-inspired bro
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 2a  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998843#overview)
 
 # ⚙️ Instructions and Commands
 

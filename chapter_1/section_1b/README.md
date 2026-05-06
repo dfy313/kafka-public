@@ -9,7 +9,7 @@ In this section, we’ll take our first step toward building the backend for the
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 1b  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998819#overview)
 
 # ⚙️ Instructions and Commands
 

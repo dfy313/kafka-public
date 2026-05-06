@@ -9,7 +9,7 @@ In this section, we’ll create the foundation of our **E-Commerce App** by buil
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 1d  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998829#overview)
 
 # ⚙️ Instructions and Commands
 

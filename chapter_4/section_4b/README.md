@@ -9,7 +9,7 @@ In this section, we introduce a **controller znode** in ZooKeeper and add **watc
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 4b  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998917#overview)
 
 # ⚙️ Instructions and Commands
 

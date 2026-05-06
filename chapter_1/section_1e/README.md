@@ -11,7 +11,7 @@ We'll learn how to subscribe to a topic, process incoming messages, emit new eve
 ## 🎥 Video Walkthrough
 
 **Title:** Kafka – Section 1e  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998833#overview)
 
 # ⚙️ Instructions and Commands
 

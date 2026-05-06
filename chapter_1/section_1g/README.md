@@ -17,12 +17,12 @@ In this section, we'll take everything we’ve built so far (Kafka cluster, `ord
 ### 🔹 Part 1: Dockerize & Publish the App
 
 **Title:** Kafka – Section 1g (Part 1)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998837#overview)
 
 ### 🔹 Part 2: Provision & Deploy with Terraform
 
 **Title:** Kafka – Section 1g (Part 2)  
-**Link:** [Watch on Udemy](https://www.udemy.com)
+**Link:** [Watch on Udemy](https://www.udemy.com/course/practical-system-design/learn/lecture/55998839#overview)
 
 # ⚙️ Instructions and Commands
 
