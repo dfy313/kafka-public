@@ -70,7 +70,9 @@ Confirm that `PUBLIC_DNS` is set correctly:
 docker compose exec kafka env
 ```
 
-Verify topics (should be empty initially):
+### 4. Create topics (Order + Payment)
+
+Verify topics initially empty:
 
 ```bash
 docker exec -it kafka-kraft kafka-topics \
@@ -83,7 +85,7 @@ docker exec -it kafka-kraft kafka-topics \
     --list --bootstrap-server localhost:9092
   ```
 
-### 4. Create topics (Order + Payment)
+Create `Order` and `Payment` topics:
 
 ```bash
 docker exec -it kafka-kraft bash -lc '
