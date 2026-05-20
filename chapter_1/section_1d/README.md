@@ -13,9 +13,10 @@ In this section, we’ll create the foundation of our **E-Commerce App** by buil
 
 # ⚙️ Instructions and Commands
 
+From the root of your project (`~/Desktop/kafka_demo`)
+
 ### 1. Create the Project Structure
 
-From the root of your project (`~/Desktop/kafka_demo`)  
 Create the `e_commerce_app` folder:
 
 ```bash
