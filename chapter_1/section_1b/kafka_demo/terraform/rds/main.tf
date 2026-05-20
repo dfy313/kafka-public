@@ -59,7 +59,7 @@ resource "null_resource" "init_orders_table" {
     ### ⚠️ macOS/Linux Users: Uncomment interpreter line below:
     # interpreter = ["/bin/bash", "-c"]
     command = <<EOT
-ENDPOINT=${aws_db_instance.eCommerceAppDB.address}
+ENDPOINT=${aws_db_instance.eCommerceAppDB.address};
 for i in $(seq 1 30); do
   if docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
       mysql -h "$ENDPOINT" -u admin -e 'SELECT 1;' >/dev/null 2>&1; then
