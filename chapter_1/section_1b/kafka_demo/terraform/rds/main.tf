@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "us-east-2"
+  region     = "us-east-2"           # Set this to the AWS region closest to you
   access_key = "<ACCESS_KEY_ID>"     # UNSAFE, ONLY FOR TESTING
   secret_key = "<SECRET_ACCESS_KEY>" # UNSAFE, ONLY FOR TESTING
 }
@@ -44,6 +44,8 @@ resource "aws_db_instance" "eCommerceAppDB" {
   vpc_security_group_ids = [aws_security_group.dbtraffic.id]
 }
 
+# If you encounter shell parsing errors, ensure this file is using LF line endings instead of CRLF
+# null_resource uses local Docker — your local machine running Terraform must have Docker available
 resource "null_resource" "init_orders_table" {
   depends_on = [aws_db_instance.eCommerceAppDB]
   triggers = {
@@ -54,6 +56,8 @@ resource "null_resource" "init_orders_table" {
   provisioner "local-exec" {
     ### ⚠️ Windows Users: Uncomment interpreter line below:
     # interpreter = ["C:/Program Files/Git/bin/bash.exe", "-lc"]
+    ### ⚠️ macOS/Linux Users: Uncomment interpreter line below:
+    # interpreter = ["/bin/bash", "-c"]
     command = <<EOT
 ENDPOINT=${aws_db_instance.eCommerceAppDB.address}
 for i in $(seq 1 30); do
