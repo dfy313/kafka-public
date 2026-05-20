@@ -70,7 +70,7 @@ Confirm that `PUBLIC_DNS` is set correctly:
 docker compose exec kafka env
 ```
 
-### 4. Create topics (Order + Payment)
+### 4. Create topics (`Order` + `Payment`)
 
 Verify topics initially empty:
 
