@@ -29,7 +29,9 @@ code -r ~/Desktop/kafka_demo
 
 &nbsp;&nbsp;&nbsp;&nbsp; _Alternatively, you can also drag the `kafka_demo` folder directly into VS Code._
 
-Create the terraform directory structure:
+### 2. Create the Terraform Directory Structure
+
+Create the `terraform/rds` directory:
 
 ```bash
 mkdir -p terraform/rds
@@ -41,7 +43,7 @@ Navigate into the directory:
 cd terraform/rds
 ```
 
-Create terraform entry file:
+Create Terraform entry file:
 
 ```bash
 touch main.tf
@@ -52,7 +54,7 @@ touch main.tf
   New-Item main.tf
   ```
 
-### 2. Install and Verify Terraform
+### 3. Install and Verify Terraform
 
 If you don’t have Terraform yet, install it with Homebrew (on **macOS**):
 
@@ -71,21 +73,14 @@ Confirm the installation:
 terraform --version
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp; _**Note:** If this command isn’t recognized, restart your terminal or VS Code and try again._  
-&nbsp;&nbsp; If a version number is returned, Terraform is installed and ready to use.
+> _**Note:** If this command isn’t recognized, restart your terminal or VS Code and try again. If a version number is returned, Terraform is installed and ready to use._
 
-### 3. Initialize and Apply the Terraform Configuration
+### 4. Initialize and Apply the Terraform Configuration
 
 Initialize Terraform:
 
 ```bash
 terraform init
-```
-
-Preview the resources Terraform will create:
-
-```bash
-terraform plan
 ```
 
 Apply the plan to create your RDS instance:
@@ -96,18 +91,37 @@ terraform apply
 
 When prompted, type `yes` to confirm the deployment.
 
-### 4. Verify the Database Setup
+### 5. Load Terraform Deployment Output
 
-Set the `APP_DB_ENDPOINT` environment variable:
+From the `terraform/rds` directory, create an environment variable file containing the database endpoint:
 
 ```bash
-APP_DB_ENDPOINT=$(terraform output -raw app_db_endpoint)
+echo "APP_DB_ENDPOINT=$(terraform output -raw app_db_endpoint)" > .env
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  $APP_DB_ENDPOINT = terraform output -raw app_db_endpoint
+  "`$APP_DB_ENDPOINT=""$(terraform output -raw app_db_endpoint)""" | Out-File -Encoding utf8 .env.ps1
   ```
+
+Load the `APP_DB_ENDPOINT` variable into your current shell session:
+
+```bash
+source .env
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  . .\.env.ps1
+  ```
+
+Confirm that the variable loaded successfully:
+
+```bash
+echo $APP_DB_ENDPOINT
+```
+
+### 6. Verify the Database Setup
 
 Display the tables in the `services_db` database:
 
@@ -123,11 +137,5 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
     mysql -h $APP_DB_ENDPOINT -u admin `
     --table -e "USE services_db; SHOW TABLES;"
   ```
-
-### 5. (Optional) Clean Up Resources
-
-```bash
-terraform destroy
-```
 
 <br>
