@@ -27,24 +27,26 @@ touch docker-compose.yml
   New-Item docker-compose.yml
   ```
 
-Then paste in starter code
+_Then paste in starter code._
 
 ### 2. Generate a `CLUSTER_ID`
+
+Run the following command to generate a UUID for the Kafka cluster:
 
 ```bash
 docker run --rm confluentinc/cp-kafka:7.6.7 \
   bash -lc 'kafka-storage random-uuid'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
-
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm confluentinc/cp-kafka:7.6.7 bash -lc 'kafka-storage random-uuid'
+  docker run --rm confluentinc/cp-kafka:7.6.7 `
+    bash -lc 'kafka-storage random-uuid'
   ```
 
-Add this value into `docker-compose.yml`
+Copy the generated UUID value and paste it into the `CLUSTER_ID` section of `docker-compose.yml`.
 
-### 3. Start the cluster
+### 3. Launch the Kafka Cluster
 
 ```bash
 PUBLIC_DNS=localhost docker compose up -d
@@ -56,13 +58,13 @@ PUBLIC_DNS=localhost docker compose up -d
   $env:PUBLIC_DNS="localhost"; docker compose up -d
   ```
 
-Confirm the container is running
+Confirm the container is running:
 
 ```bash
 docker ps
 ```
 
-Confirm that `PUBLIC_DNS` is being passed correctly
+Confirm that `PUBLIC_DNS` is set correctly:
 
 ```bash
 docker compose exec kafka env
@@ -75,10 +77,10 @@ docker exec -it kafka-kraft kafka-topics \
   --list --bootstrap-server localhost:9092
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
-
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker exec -it kafka-kraft kafka-topics --list --bootstrap-server localhost:9092
+  docker exec -it kafka-kraft kafka-topics `
+    --list --bootstrap-server localhost:9092
   ```
 
 ### 4. Create topics (Order + Payment)
@@ -99,16 +101,10 @@ docker exec -it kafka-kraft kafka-topics \
   --list --bootstrap-server localhost:9092
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
-
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker exec -it kafka-kraft kafka-topics --list --bootstrap-server localhost:9092
+  docker exec -it kafka-kraft kafka-topics `
+    --list --bootstrap-server localhost:9092
   ```
-
-### 5. (Optional) Cleanup
-
-```bash
-docker compose down -v
-```
 
 <br>
