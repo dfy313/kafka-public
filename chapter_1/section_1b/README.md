@@ -89,7 +89,7 @@ Apply the plan to create your RDS instance:
 terraform apply
 ```
 
-When prompted, type `yes` to confirm the deployment.
+> _When prompted, type `yes` to confirm the deployment._
 
 ### 5. Load Terraform Deployment Output
 
