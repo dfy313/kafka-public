@@ -44,7 +44,7 @@ docker run --rm confluentinc/cp-kafka:7.6.7 \
     bash -lc 'kafka-storage random-uuid'
   ```
 
-Copy the generated UUID value and paste it into the `CLUSTER_ID` section of `docker-compose.yml`.
+_Copy the generated UUID value and paste it into the `CLUSTER_ID` section of `docker-compose.yml`._
 
 ### 3. Launch the Kafka Cluster
 
