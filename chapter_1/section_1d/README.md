@@ -15,9 +15,9 @@ In this section, we’ll create the foundation of our **E-Commerce App** by buil
 
 From the root of your project (`~/Desktop/kafka_demo`)
 
-### 1. Create the Project Structure
+### 1. Create the E-Commerce App Structure
 
-Create the `e_commerce_app` folder:
+Create the main `e_commerce_app` package:
 
 ```bash
 mkdir e_commerce_app
@@ -34,57 +34,69 @@ touch e_commerce_app/__init__.py
   New-Item e_commerce_app/__init__.py
   ```
 
-Create the `launcher.py` file:
+Create the application launcher file:
 
 ```bash
 touch e_commerce_app/launcher.py
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
   ```bash
   New-Item e_commerce_app/launcher.py
   ```
 
-_Then paste in starter code_
+_Paste in the provided `launcher.py` starter code._
 
-Create a folder for your services and add the Order Service:
+### 2. Create the Services Directory Structure
+
+Create a directory to hold the application services:
 
 ```bash
 mkdir -p e_commerce_app/services
 ```
 
+Add the package initializer:
+
 ```bash
 touch e_commerce_app/services/__init__.py
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  New-Item e_commerce_app/services/__init__.py
+  ```
+
+Create the `order_service` file:
+
+```bash
 touch e_commerce_app/services/order_service.py
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
   ```bash
-  New-Item e_commerce_app/services/__init__.py
   New-Item e_commerce_app/services/order_service.py
   ```
 
-_Then paste in starter code_
+_Paste in the provided `order_service` starter code._
 
-Add a shared service base module:
+### 3. Create the Shared Service Base Module
+
+Create a shared `service_base.py` module for reusable configuration and helper logic:
 
 ```bash
 touch e_commerce_app/service_base.py
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
   ```bash
   New-Item e_commerce_app/service_base.py
   ```
 
-_Then paste in starter code_
+_Paste in the provided `service_base.py` starter code._
 
-### 2. Set Up Virtual Environment and Install Dependencies
+### 4. Set Up Virtual Environment and Install Dependencies
 
-Create virtual environment:
+Create a virtual environment:
 
 ```bash
 python3 -m venv venv
@@ -95,7 +107,7 @@ python3 -m venv venv
   python -m venv venv
   ```
 
-Activate virtual environment:
+Activate the virtual environment:
 
 ```bash
 source venv/bin/activate
@@ -112,54 +124,35 @@ source venv/bin/activate
   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
   ```
 
-Install dependencies:
+Install the dependencies:
 
 ```bash
 pip install pymysql flask kafka-python
 ```
 
-### 3. Ensure Kafka Cluster Is Running + Topics Created
+### 5. Ensure Kafka Cluster is Running & Topics are Created
 
-Before launching the app, make sure your Kafka cluster is up and topics are created. You can revisit [Section 1C → Steps 3-4](../section_1c/README.md#3-start-the-cluster) for the setup and commands.
+Before launching the application, verify that your Kafka cluster is running and the required topics have been created:
 
-### 4. Ensure the `APP_DB_ENDPOINT` Environment Variable Is Set
+- Revisit **[Section 1C → Step 3](../section_1c/README.md#3-start-the-cluster)** to launch the Kafka cluster
+- Revisit **[Section 1C → Step 4](../section_1c/README.md##4-create-topics-order--payment)** to create the `Order` and `Payment` topics
 
-Navigate into the `terraform/rds` directory and pull the database endpoint directly from Terraform:
+### 6. Ensure the `APP_DB_ENDPOINT` Environment Variable is Set
 
-```bash
-cd terraform/rds
-```
-
-Set `APP_DB_ENDPOINT` environment variable:
+From the project root (`~/Desktop/kafka_demo`), load the `APP_DB_ENDPOINT` environment variable:
 
 ```bash
-APP_DB_ENDPOINT=$(terraform output -raw app_db_endpoint)
+source terraform/rds/.env
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
   ```bash
-  $APP_DB_ENDPOINT = terraform output -raw app_db_endpoint
+  . .\terraform\rds\.env
   ```
 
-_Alternatively, you can retrieve the endpoint manually from the AWS Console:_
+### 7. Launch the E-Commerce App
 
-- Go to **AWS Console → Aurora and RDS** and select `e-commerce-app-db`
-- Copy the value from the **Endpoint & port** section, and set it locally:
-
-```bash
-APP_DB_ENDPOINT=<YOUR_RDS_ENDPOINT>
-```
-
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
-  ```bash
-  $APP_DB_ENDPOINT="<YOUR_RDS_ENDPOINT>"
-  ```
-
-### 5. Launch the E-Commerce App
-
-Run the Flask App with your environment variables configured:
+Start the Flask app with the required `KAFKA_BOOTSTRAP` and `DB_HOST` environment variables passed in:
 
 ```bash
 KAFKA_BOOTSTRAP=localhost:9092 \
@@ -174,7 +167,7 @@ KAFKA_BOOTSTRAP=localhost:9092 \
   python -m e_commerce_app.launcher
   ```
 
-### 6. Produce a Test Order Event for `order_1`
+### 8. Produce a Test Order Event for `order_1`
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -196,11 +189,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
-
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
     -H "Content-Type: application/json" `
@@ -221,9 +210,9 @@ curl -X POST http://localhost:5001/produce \
     }'
   ```
 
-### 7. Verify Order in the Database
+### 9. Verify Order in the Database
 
-Refer back to **[Step 4](#4-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable.
+Refer back to **[Step 6](#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable.
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -238,7 +227,7 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
     --table -e "USE services_db; SELECT * FROM Orders;"
   ```
 
-### 8. Verify Event in Kafka
+### 10. Verify Event in Kafka
 
 ```bash
 docker exec -it kafka-kraft kafka-console-consumer \
@@ -246,12 +235,14 @@ docker exec -it kafka-kraft kafka-console-consumer \
   --topic order --from-beginning --max-messages 1
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker exec -it kafka-kraft kafka-console-consumer --bootstrap-server localhost:9092 --topic order --from-beginning --max-messages 1
+  docker exec -it kafka-kraft kafka-console-consumer `
+    --bootstrap-server localhost:9092 `
+    --topic order --from-beginning --max-messages 1
   ```
 
-### 9. Cleanup: Reset for Future Tests
+### 11. Cleanup: Reset for Future Tests
 
 In the terminal where the `e_commerce_app` is running, press:
 
@@ -259,7 +250,9 @@ In the terminal where the `e_commerce_app` is running, press:
 Ctrl + C
 ```
 
-Truncate the `Orders` table (_Refer back to [Step 4](#4-ensure-the-app_db_endpoint-environment-variable-is-set) to set the `APP_DB_ENDPOINT` environment variable._)
+Truncate the `Orders` table:
+
+> _Refer back to [Step 6](#6-ensure-the-app_db_endpoint-environment-variable-is-set) to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -269,10 +262,12 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $APP_DB_ENDPOINT -u admin --table -e "USE services_db; TRUNCATE TABLE Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; TRUNCATE TABLE Orders;"
   ```
 
-Tear down Kafka container:
+Bring down Kafka container:
 
 ```bash
 docker-compose down -v
