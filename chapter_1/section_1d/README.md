@@ -134,8 +134,8 @@ pip install pymysql flask kafka-python
 
 Before launching the application, verify that your Kafka cluster is running and the required topics have been created:
 
-- Revisit **[Section 1C → Step 3](../section_1c/README.md#3-start-the-cluster)** to launch the Kafka cluster
-- Revisit **[Section 1C → Step 4](../section_1c/README.md##4-create-topics-order--payment)** to create the `Order` and `Payment` topics
+- Revisit **[Section 1C → Step 3](../section_1c/README.md#3-launch-the-cluster)** to launch the Kafka cluster
+- Revisit **[Section 1C → Step 4](../section_1c/README.md#4-create-topics-order--payment)** to create the `Order` and `Payment` topics
 
 ### 6. Ensure the `APP_DB_ENDPOINT` Environment Variable is Set
 
