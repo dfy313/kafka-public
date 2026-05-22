@@ -13,7 +13,7 @@ In this section, we’ll create the foundation of our **E-Commerce App** by buil
 
 # ⚙️ Instructions and Commands
 
-From the root of your project (`~/Desktop/kafka_demo`)
+From the root of your project (`~/Desktop/kafka_demo`):
 
 ### 1. Create the E-Commerce App Structure
 
@@ -212,7 +212,7 @@ curl -X POST http://localhost:5001/produce \
 
 ### 9. Verify Order in the Database
 
-Refer back to **[Step 6](#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable.
+_Refer back to **[Step 6](#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
