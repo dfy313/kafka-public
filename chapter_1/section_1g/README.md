@@ -223,7 +223,7 @@ docker run --rm confluentinc/cp-kafka:7.6.7 \
   ```bash
   docker run --rm confluentinc/cp-kafka:7.6.7 `
     kafka-consumer-groups `
-    --bootstrap-server "{$KAFKA_BOOTSTRAP_URL}:9092" `
+    --bootstrap-server "${KAFKA_BOOTSTRAP_URL}:9092" `
     --list
   ```
 
