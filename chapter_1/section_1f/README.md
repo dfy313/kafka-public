@@ -84,7 +84,7 @@ docker exec -it kafka-kraft kafka-consumer-groups \
   --list
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   docker exec -it kafka-kraft kafka-consumer-groups `
     --bootstrap-server localhost:9092 `
