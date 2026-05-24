@@ -336,8 +336,8 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
-    mysql -h $FULLSTACK_DB_ENDPOINT -u admin \
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $FULLSTACK_DB_ENDPOINT -u admin `
     --table -e "USE services_db; SELECT * FROM Orders;"
   ```
 
