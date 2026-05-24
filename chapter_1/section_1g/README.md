@@ -96,7 +96,7 @@ docker buildx build \
   --push .
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   docker buildx build `
     --platform linux/amd64,linux/arm64 `
@@ -239,7 +239,7 @@ curl "$E_COMMERCE_APP_URL:5002/healthz"
 curl "$E_COMMERCE_APP_URL:5003/healthz"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, use `curl.exe` and wrap the `E_COMMERCE_APP_URL` environment variable in `${}`:
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   curl.exe "${E_COMMERCE_APP_URL}:5001/healthz"
   curl.exe "${E_COMMERCE_APP_URL}:5002/healthz"
