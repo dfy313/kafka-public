@@ -227,7 +227,7 @@ docker run --rm confluentinc/cp-kafka:7.6.7 \
     --list
   ```
 
-If you see `payment_service` and `notification_service` in the list, that confirms the e-commerce app has successfully started up and connected to Kafka as expected.
+> _If you see `payment_service` and `notification_service` in the list, that confirms the e-commerce app has successfully started up and connected to Kafka as expected._
 
 ### 5. Verify the E-Commerce App EC2 Deployment
 
