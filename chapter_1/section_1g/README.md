@@ -30,7 +30,7 @@ In this section, we'll take everything we’ve built so far (Kafka cluster, `ord
 
 From `~/Desktop/kafka_demo` (project root):
 
-### 1. Create Python requirements + Dockerfile
+### 1. Create Python Requirements + Dockerfile
 
 ```bash
 touch e_commerce_app/requirements.txt
@@ -41,7 +41,7 @@ touch e_commerce_app/requirements.txt
   New-Item e_commerce_app/requirements.txt
   ```
 
-_Paste in the starter requirements._
+_Paste in the provided `requirements.txt` file._
 
 ```bash
 touch e_commerce_app/dockerfile
@@ -52,7 +52,7 @@ touch e_commerce_app/dockerfile
   New-Item e_commerce_app/dockerfile
   ```
 
-_Paste in the starter Dockerfile._
+_Paste in the provided `dockerfile`._
 
 ### 2. Build & Push to Docker Hub
 
@@ -85,7 +85,9 @@ Create new `buildx`:
 docker buildx create --name multi --use --bootstrap
 ```
 
-Build + push (replace `<YOUR_DOCKERHUB_USERNAME>` with your own username):
+Build the multi-platform Docker image and push it to Docker Hub:
+
+> _Replace `<YOUR_DOCKERHUB_USERNAME>` with your own Docker Hub username._
 
 ```bash
 docker buildx build \
@@ -96,18 +98,21 @@ docker buildx build \
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
   ```bash
-  docker buildx build --platform linux/amd64,linux/arm64 -t <YOUR_DOCKERHUB_USERNAME>/e-commerce-app:latest --push .
+  docker buildx build `
+    --platform linux/amd64,linux/arm64 `
+    -t <YOUR_DOCKERHUB_USERNAME>/e-commerce-app:latest `
+    --push .
   ```
 
-### 3. Create Terraform project
+### 3. Create the Terraform Full-Stack Configuration
 
-Navigate back into `~/Desktop/kafka_demo`:
+Navigate back into the `~/Desktop/kafka_demo` project root:
 
 ```bash
 cd ..
 ```
 
-Create directory for `full-stack` configuration:
+Create directory for the `full-stack` Terraform configuration:
 
 ```bash
 mkdir terraform/full-stack
@@ -124,7 +129,7 @@ touch terraform/full-stack/main.tf
   New-Item terraform/full-stack/main.tf
   ```
 
-_Paste in the starter Terraform code._
+_Paste in the starter Terraform configuration code._
 
 <br>
 
@@ -179,9 +184,11 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; SHOW TABLES;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $FULLSTACK_DB_ENDPOINT -u admin --table -e "USE services_db; SHOW TABLES;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $FULLSTACK_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; SHOW TABLES;"
   ```
 
 ### 4. Verify Kafka EC2 Deployment
@@ -195,9 +202,12 @@ docker run --rm confluentinc/cp-kafka:7.6.7 \
   --list
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks), and wrap the `KAFKA_BOOTSTRAP_URL` environment variable in `${}`:
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm confluentinc/cp-kafka:7.6.7 kafka-topics --bootstrap-server "${KAFKA_BOOTSTRAP_URL}:9092" --list
+  docker run --rm confluentinc/cp-kafka:7.6.7 `
+    kafka-topics `
+    --bootstrap-server "${KAFKA_BOOTSTRAP_URL}:9092" `
+    --list
   ```
 
 List consumer groups:
@@ -209,16 +219,19 @@ docker run --rm confluentinc/cp-kafka:7.6.7 \
   --list
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks), and wrap the `KAFKA_BOOTSTRAP_URL` environment variable in `${}`:
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm confluentinc/cp-kafka:7.6.7 kafka-consumer-groups --bootstrap-server "${KAFKA_BOOTSTRAP_URL}:9092" --list
+  docker run --rm confluentinc/cp-kafka:7.6.7 `
+    kafka-consumer-groups `
+    --bootstrap-server "{$KAFKA_BOOTSTRAP_URL}:9092" `
+    --list
   ```
 
 If you see `payment_service` and `notification_service` in the list, that confirms the e-commerce app has successfully started up and connected to Kafka as expected.
 
 ### 5. Verify the E-Commerce App EC2 Deployment
 
-Hit the health check endpoint:
+Call the health check endpoint for each individual e-commerce app service:
 
 ```bash
 curl "$E_COMMERCE_APP_URL:5001/healthz"
@@ -233,24 +246,9 @@ curl "$E_COMMERCE_APP_URL:5003/healthz"
   curl.exe "${E_COMMERCE_APP_URL}:5003/healthz"
   ```
 
-_💡 Optional — also hit the individual debug endpoints_
+### 6. Produce Test Orders (`order_1` & `order_2`)
 
-```bash
-curl "$E_COMMERCE_APP_URL:5001"
-curl "$E_COMMERCE_APP_URL:5002"
-curl "$E_COMMERCE_APP_URL:5003"
-```
-
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, use `curl.exe` and wrap the `E_COMMERCE_APP_URL` environment variable in `${}`:
-  ```bash
-  curl.exe "${E_COMMERCE_APP_URL}:5001"
-  curl.exe "${E_COMMERCE_APP_URL}:5002"
-  curl.exe "${E_COMMERCE_APP_URL}:5003"
-  ```
-
-### 6. Produce Test Orders (`order_1`, `order_2`)
-
-Send `order_1` and `order_2`
+Send `order_1` and `order_2`:
 
 ```bash
 curl -X POST "$E_COMMERCE_APP_URL:5001/produce" \
@@ -289,11 +287,7 @@ curl -X POST "$E_COMMERCE_APP_URL:5001/produce" \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
-  - Wrap the `E_COMMERCE_APP_URL` environment variable in `${}`
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
 
   ```bash
   curl.exe -X POST "${E_COMMERCE_APP_URL}:5001/produce" `
@@ -340,9 +334,11 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; SELECT * FROM Orders;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $FULLSTACK_DB_ENDPOINT -u admin --table -e "USE services_db; SELECT * FROM Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
+    mysql -h $FULLSTACK_DB_ENDPOINT -u admin \
+    --table -e "USE services_db; SELECT * FROM Orders;"
   ```
 
 ### 8. Verify Kafka Data Topics & Internal `__consumer_offsets`
@@ -359,10 +355,10 @@ for t in order payment; do
 done'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, wrap the `KAFKA_BOOTSTRAP_URL` environment variable in `${}` and keep the `docker run` portion of the command on a single line:
-
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e BROKER="${KAFKA_BOOTSTRAP_URL}:9092" confluentinc/cp-kafka:7.6.7 bash -lc '
+  docker run --rm -e BROKER="${KAFKA_BOOTSTRAP_URL}:9092" `
+    confluentinc/cp-kafka:7.6.7 bash -lc '
   for t in order payment; do
     echo === $t ===
     kafka-console-consumer --bootstrap-server "$BROKER" \
@@ -380,9 +376,13 @@ docker run --rm --name kafka-cli confluentinc/cp-kafka:7.6.7 kafka-console-consu
   --formatter "kafka.coordinator.group.GroupMetadataManager\$OffsetsMessageFormatter"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks), wrap the `KAFKA_BOOTSTRAP_URL` environment variable in `${}`, and escape the `$OffsetsMessageFormatter` portion using `` `$ ``:
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm --name kafka-cli confluentinc/cp-kafka:7.6.7 kafka-console-consumer --bootstrap-server "${KAFKA_BOOTSTRAP_URL}:9092" --topic __consumer_offsets --from-beginning --formatter "kafka.coordinator.group.GroupMetadataManager`$OffsetsMessageFormatter"
+  docker run --rm --name kafka-cli confluentinc/cp-kafka:7.6.7 kafka-console-consumer `
+    --bootstrap-server "${KAFKA_BOOTSTRAP_URL}:9092" `
+    --topic __consumer_offsets `
+    --from-beginning `
+    --formatter "kafka.coordinator.group.GroupMetadataManager`$OffsetsMessageFormatter"
   ```
 
 From a new terminal window, stop the `kafka-console-consumer`
@@ -405,15 +405,13 @@ If you're on **macOS or Linux**, set the correct permissions on the key pair fil
 chmod 400 "ecommerce-app-fullstack-keypair.pem"
 ```
 
-Use the SSH command provided in **AWS Console → EC2 → Instances → Connect → SSH Client**  
-Or alternatively, use the existing `$E_COMMERCE_APP_URL` environment variable
+SSH into the EC2 instance running the e-commerce application:
 
 ```bash
 ssh -i "ecommerce-app-fullstack-keypair.pem" ubuntu@$E_COMMERCE_APP_URL
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
   ```bash
   ssh -i "ecommerce-app-fullstack-keypair.pem" "ubuntu@${E_COMMERCE_APP_URL}"
   ```
@@ -444,13 +442,7 @@ Exit the SSH session:
 exit
 ```
 
-<p style="margin-bottom: 4px;"><em>💡 Optional — troubleshoot setup problems by viewing the cloud-init logs:</em></p>
-
-```bash
-sudo tail -n 200 /var/log/cloud-init-output.log
-```
-
-### 10. Destroy Terraform
+### 10. Tear Down the Terraform Infrastructure
 
 Navigate into `terraform/full-stack`:
 
@@ -465,61 +457,5 @@ terraform destroy
 ```
 
 > _When prompted, type `yes` to confirm the destroy plan._
-
-<br>
-
-## 🔧 (Optional) SSH into Kafka EC2 for Advanced Debugging
-
-If you want to inspect the Kafka EC2 instance directly, SSH into it using the command provided in
-**AWS Console → EC2 → Instances → Connect → SSH Client**:
-
-```bash
-cd ~/Desktop/kafka_demo
-chmod 400 "ecommerce-app-fullstack-keypair.pem"
-```
-
-```bash
-ssh -i "ecommerce-app-fullstack-keypair.pem" ubuntu@<YOUR_KAFKA_EC2_PUBLIC_DNS>
-```
-
-When prompted, type `yes` for fingerprint verification.
-
-**Once connected**:  
-Check running containers:
-
-```bash
-cd /opt/kafka
-sudo docker ps
-```
-
-View Kafka logs:
-
-```bash
-sudo docker compose logs -f kafka
-```
-
-Inspect environment variables:
-
-```bash
-sudo docker exec kafka-kraft printenv | sort
-```
-
-List topics and consumer groups:
-
-```bash
-export PRIVATE_DNS="$(hostname -f 2>/dev/null || true)"
-
-sudo docker exec -it kafka-kraft kafka-topics \
-  --bootstrap-server "${PRIVATE_DNS}:9092" --list
-
-sudo docker exec -it kafka-kraft kafka-consumer-groups \
-  --bootstrap-server "${PRIVATE_DNS}:9092" --list
-```
-
-Check the `cloud-init` logs (helpful if Kafka failed to start):
-
-```bash
-sudo tail -n 200 /var/log/cloud-init-output.log
-```
 
 <br>
