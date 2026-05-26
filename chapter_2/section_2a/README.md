@@ -45,7 +45,7 @@ touch kafkaesque/__main__.py
   New-Item kafkaesque/__main__.py
   ```
 
-_Paste in `__main__.py` starter code._
+_Paste in the provided `__main__.py` starter code._
 
 ### 2. Scaffold Kafkaesque Broker Package
 
@@ -77,7 +77,7 @@ touch kafkaesque/broker/app.py
   New-Item kafkaesque/broker/app.py
   ```
 
-_Paste in starter broker `app.py` starter code._
+_Paste in the provided broker `app.py` starter code._
 
 Create the broker's utility file:
 
@@ -90,11 +90,23 @@ touch kafkaesque/broker/_util.py
   New-Item kafkaesque/broker/_util.py
   ```
 
-_Paste in broker `_util.py` starter code._
+_Paste in the provided broker `_util.py` starter code._
 
-### 3. Launch Kafkaesque Broker
+### 3. Ensure Virtual Environment is Activated
 
-Before launching the Kafkaesque broker, make sure your virtual environment is created and activated. You can revisit **[Section 1D → Step 2](/chapter_1/section_1d/README.md#2-set-up-a-virtual-environment-and-install-dependencies)** for the specific commands.
+```bash
+source venv/bin/activate
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  .\venv\Scripts\Activate.ps1
+  ```
+
+### 4. Launch Kafkaesque Broker
+
+Launch Kafkaesque broker:
 
 ```bash
 python -m kafkaesque
@@ -113,9 +125,9 @@ curl http://localhost:19092/healthz
   curl.exe http://localhost:19092/healthz
   ```
 
-### 4. Create Kafkaesque Topics
+### 5. Create Kafkaesque Topics
 
-Create the `Order` and `Payment` topics, both with 1 partition & a replication factor of 1.
+Create the `Order` and `Payment` topics, both with 1 partition and a replication factor of 1:
 
 ```bash
 curl -X POST http://localhost:19092/topics \
@@ -141,9 +153,9 @@ curl -X POST http://localhost:19092/topics \
 
 _Verify that the topic folders get created under `.var/kafkaesque/default_broker`, along with empty partition files._
 
-### 5. Describe Topics Endpoint
+### 6. Hit Describe Topics Endpoint
 
-Hit the topics describe endpoints
+Hit the topics describe endpoints:
 
 ```bash
 curl http://localhost:19092/topics/order
@@ -156,9 +168,9 @@ curl http://localhost:19092/topics/payment
   curl.exe http://localhost:19092/topics/payment
   ```
 
-### 6. Verify Internal Broker State
+### 7. Verify Internal Broker State
 
-Hit the debug endpoint
+Hit the debug endpoint:
 
 ```bash
 curl http://localhost:19092/debug
@@ -169,15 +181,15 @@ curl http://localhost:19092/debug
   curl.exe http://localhost:19092/debug
   ```
 
-### 7. Shutdown & Reset Environment
+### 8. Shutdown & Reset Environment
 
-Stop the Kafkaesque broker
+Stop the Kafkaesque broker:
 
 ```bash
 Ctrl + C
 ```
 
-Cleanup Kafkaesque broker data
+Cleanup Kafkaesque broker data:
 
 ```bash
 rm -rf .var
