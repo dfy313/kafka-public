@@ -45,7 +45,7 @@ touch kafkaesque/__main__.py
   New-Item kafkaesque/__main__.py
   ```
 
-_Paste in the provided `__main__.py` starter code._
+> _Paste in the provided `__main__.py` starter code._
 
 ### 2. Scaffold Kafkaesque Broker Package
 
@@ -77,7 +77,7 @@ touch kafkaesque/broker/app.py
   New-Item kafkaesque/broker/app.py
   ```
 
-_Paste in the provided broker `app.py` starter code._
+> _Paste in the provided broker `app.py` starter code._
 
 Create the broker's utility file:
 
@@ -90,7 +90,7 @@ touch kafkaesque/broker/_util.py
   New-Item kafkaesque/broker/_util.py
   ```
 
-_Paste in the provided broker `_util.py` starter code._
+> _Paste in the provided broker `_util.py` starter code._
 
 ### 3. Ensure Virtual Environment is Activated
 
@@ -112,7 +112,7 @@ Launch Kafkaesque broker:
 python -m kafkaesque
 ```
 
-_After launch, make sure the `.var` folder is created along with the nested `kafkaesque` and `default_broker` subfolders._
+> _After launch, make sure the `.var` folder is created along with the nested `kafkaesque` and `default_broker` subfolders._
 
 Hit the health check endpoint:
 
@@ -151,7 +151,7 @@ curl -X POST http://localhost:19092/topics \
     -d '{\"name\":\"payment\",\"partitions\":1,\"replication_factor\":1}'
   ```
 
-_Verify that the topic folders get created under `.var/kafkaesque/default_broker`, along with empty partition files._
+> _Verify that the topic folders get created under `.var/kafkaesque/default_broker`, along with empty partition files._
 
 ### 6. Hit Describe Topics Endpoint
 
