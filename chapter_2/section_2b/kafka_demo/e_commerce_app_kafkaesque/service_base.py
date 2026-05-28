@@ -182,14 +182,15 @@ def run_consumer_loop(
     finally:
         try: # Always close the consumer
             consumer.close()
+            print(f"[{CLIENT_ID}] consumer closed")
         except Exception:
             pass
         if producer:
             try: # close the producer if we used one for follow-up events
                 producer.close()
+                print(f"[{CLIENT_ID}] producer closed")
             except Exception:
                 pass
-        print(f"[{CLIENT_ID}] consumer closed")
 
 # =============== FLASK APP FACTORY ===============
 def create_base_app(group_id: str, subscriptions: list, kafka_bootstrap: str | None = None):
