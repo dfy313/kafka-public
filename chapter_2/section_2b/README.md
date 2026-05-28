@@ -40,9 +40,13 @@ From `~/Desktop/kafka_demo` (project root):
 
 ### 1. Scaffold Kafkaesque API Package
 
+Create the API package directory:
+
 ```bash
 mkdir kafkaesque/api
 ```
+
+Create the package initializer:
 
 ```bash
 touch kafkaesque/api/__init__.py
@@ -55,6 +59,8 @@ touch kafkaesque/api/__init__.py
 
 ### 2. Introduce Producer API
 
+Create the producer API module:
+
 ```bash
 touch kafkaesque/api/producer_api.py
 ```
@@ -64,7 +70,9 @@ touch kafkaesque/api/producer_api.py
   New-Item kafkaesque/api/producer_api.py
   ```
 
-_Paste in starter `producer_api` starter code._
+_Paste in provided `producer_api` starter code._
+
+Create the API utility module:
 
 ```bash
 touch kafkaesque/api/_util.py
@@ -75,7 +83,7 @@ touch kafkaesque/api/_util.py
   New-Item kafkaesque/api/_util.py
   ```
 
-_Paste in API `_util.py` starter code._
+_Paste in provided API `_util.py` starter code._
 
 ### 3. Create Structs FIle
 
@@ -88,7 +96,7 @@ touch kafkaesque/structs.py
   New-Item kafkaesque/structs.py
   ```
 
-_Paste in starter `structs.py` starter code._
+_Paste in provided `structs.py` starter code._
 
 <br>
 
