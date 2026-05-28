@@ -70,7 +70,7 @@ touch kafkaesque/api/producer_api.py
   New-Item kafkaesque/api/producer_api.py
   ```
 
-_Paste in provided `producer_api` starter code._
+> _Paste in provided `producer_api` starter code._
 
 Create the API utility module:
 
@@ -83,7 +83,7 @@ touch kafkaesque/api/_util.py
   New-Item kafkaesque/api/_util.py
   ```
 
-_Paste in provided API `_util.py` starter code._
+> _Paste in provided API `_util.py` starter code._
 
 ### 3. Create Structs FIle
 
@@ -96,7 +96,7 @@ touch kafkaesque/structs.py
   New-Item kafkaesque/structs.py
   ```
 
-_Paste in provided `structs.py` starter code._
+> _Paste in provided `structs.py` starter code._
 
 <br>
 
