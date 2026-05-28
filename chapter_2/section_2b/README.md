@@ -141,7 +141,7 @@ ggrep -RIlZ 'e_commerce_app' e_commerce_app_kafkaesque \
   | xargs -0 perl -pi -e 's/\be_commerce_app\b/e_commerce_app_kafkaesque/g'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell** you can do this natively without installing anything:
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   Get-ChildItem e_commerce_app_kafkaesque -Recurse -File |
     ForEach-Object {
@@ -156,7 +156,7 @@ ggrep -RIlZ 'e_commerce_app' e_commerce_app_kafkaesque \
 
 ### 3. Update `e_commerce_app_kafkaesque` Code
 
-Add code updates to`launcher.py`, `service_base.py` and `services/order_service.py`.
+Inside the `e_commerce_app_kafkaesque` directory, apply the provided code updates to `launcher.py`, `service_base.py` and `services/order_service.py`.
 
 ### 4. Virtual Environment Updates
 
@@ -185,11 +185,35 @@ python -m kafkaesque
 
 ### 6. Create Kafkaesque Topics
 
-Refer back to **[Section 2A → Step 4](../section_2a/README.md#4-create-kafkaesque-topics)** for the exact commands to create the `Order` and `Payment` topics.
+Create the `Order` and `Payment` topics, both with 1 partition and a replication factor of 1:
+
+```bash
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"order","partitions":1,"replication_factor":1}'
+
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"payment","partitions":1,"replication_factor":1}'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"order\",\"partitions\":1,\"replication_factor\":1}'
+
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"payment\",\"partitions\":1,\"replication_factor\":1}'
+  ```
+
+> _Verify that the topic folders get created under `.var/kafkaesque/default_broker`, along with empty partition files._
 
 ### 7. Launch `e_commerce_app_kafkaesque`
 
-Please make sure that the `APP_DB_ENDPOINT` environment variable is properly set. You can revisit **[Section 1D → Step 4](/chapter_1//section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** for the specific commands.
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 KAFKA_BOOTSTRAP=localhost:19092 \
@@ -227,10 +251,6 @@ curl -X POST http://localhost:5001/produce \
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
-
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
     -H "Content-Type: application/json" `
@@ -253,7 +273,7 @@ curl -X POST http://localhost:5001/produce \
 
 ### 9. Verify Order in the Database
 
-Refer back to **[Section 1D → Step 4](/chapter_1//section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable.
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -261,9 +281,11 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; SELECT * FROM Orders;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $APP_DB_ENDPOINT -u admin --table -e "USE services_db; SELECT * FROM Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; SELECT * FROM Orders;"
   ```
 
 ### 10. Verify Partition Files
@@ -300,14 +322,15 @@ Stop the Kafkaesque broker:
 Ctrl + C
 ```
 
-Stop the `e_commerce_app_kafkaesque`
+Stop the `e_commerce_app_kafkaesque`:
 
 ```bash
 Ctrl + C
 ```
 
-Clear out `Orders` table:  
-&nbsp;&nbsp;&nbsp;&nbsp;_Refer back to **[Section 1D → Step 4](/chapter_1//section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+Clear out `Orders` table:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -315,12 +338,14 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; TRUNCATE TABLE Orders;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $APP_DB_ENDPOINT -u admin --table -e "USE services_db; TRUNCATE TABLE Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; TRUNCATE TABLE Orders;"
   ```
 
-Cleanup Kafkaesque broker data:
+Clean up Kafkaesque broker data:
 
 ```bash
 rm -rf .var
