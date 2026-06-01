@@ -79,7 +79,7 @@ python -m kafkaesque
 
 ### 3. Create Kafkaesque Topics
 
-Create the `Order` and `Payment` data topics, both with 1 partition & a replication factor of 1:
+Create the `Order` and `Payment` data topics, both with 1 partition and a replication factor of 1:
 
 ```bash
 curl -X POST http://localhost:19092/topics \
