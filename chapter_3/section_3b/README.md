@@ -34,7 +34,7 @@ Add an additional instance of `payment_service` and `notification_service` in `e
 
 ### 2. Update Kafkaesque to Support 2 Consumers Per Group
 
-Update `consumer_api.py`, `broker/app.py` and `broker/_util.py`.
+Inside the `kafkaesque` directory, update `api/consumer_api.py`, `broker/app.py` and `broker/_util.py`.
 
 <br>
 
@@ -44,15 +44,72 @@ From `~/Desktop/kafka_demo` (project root):
 
 ### 1. Launch Kafkaesque Broker
 
-Refer back to **[Section 3A → Step 1](../section_3a/README.md#1-launch-kafkaesque-broker)** for the exact command to launch the broker.
+> _Please make sure your virtual environment is activated. You can revisit **[Section 3A → Step 1](/chapter_3/section_3a/README.md#1-ensure-virtual-environment-is-activated)** for the exact command._
+
+```bash
+python -m kafkaesque
+```
 
 ### 2. Create Kafkaesque Topics with 2 Partitions Each
 
-Refer back to **[Section 3A → Step 2](../section_3a/README.md#2-create-kafkaesque-topics-with-2-partitions-each)** for the exact command to create the data topics and internal `__consumer_offsets` topic with `partitions=2` and `RF=1`.
+Create the `Order` and `Payment` data topics, this time with 2 partitions per topic (still set `RF=1` for now):
+
+```bash
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"order","partitions":2,"replication_factor":1}'
+
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"payment","partitions":2,"replication_factor":1}'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"order\",\"partitions\":2,\"replication_factor\":1}'
+
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"payment\",\"partitions\":2,\"replication_factor\":1}'
+  ```
+
+Create the internal `__consumer_offsets` topic, also with 2 partitions and `RF=1`:
+
+```bash
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"__consumer_offsets","partitions":2,"replication_factor":1}'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"__consumer_offsets\",\"partitions\":2,\"replication_factor\":1}'
+  ```
+
+> _Verify that the correct folders and partition files have been created under the `.var` directory._
 
 ### 3. Launch `e_commerce_app_kafkaesque`
 
-Refer back to **[Section 3A → Step 4](../section_3a/README.md#4-launch-e_commerce_app_kafkaesque)** for the exact command to launch `e_commerce_app_kafkaesque`.
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+KAFKA_BOOTSTRAP=localhost:19092 \
+  DB_HOST=$APP_DB_ENDPOINT \
+  python -m e_commerce_app_kafkaesque.launcher
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  $env:KAFKA_BOOTSTRAP = "localhost:19092"
+  $env:DB_HOST = $APP_DB_ENDPOINT
+  python -m e_commerce_app_kafkaesque.launcher
+  ```
 
 ### 4. Verify Internal Broker State
 
@@ -67,11 +124,85 @@ curl http://localhost:19092/debug
   curl.exe http://localhost:19092/debug
   ```
 
-_Verify assignments in `consumer_groups_cache`._
+> _Verify assignments in `consumer_groups_cache`._
 
 ### 5. Produce `order_1` + `order_2`
 
-Refer back to **[Section 3A → Step 6](../section_3a/README.md#6-produce-order_1--order_2)** for the exact commands to produce `order_1` and `order_2`.
+```bash
+curl -X POST http://localhost:5001/produce \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "order",
+    "key": "order_1",
+    "event": {
+      "event_type": "OrderPlaced",
+      "order_id": "order_1",
+      "user_id": "user_1",
+      "items": [
+        { "product_id": "prod_1", "quantity": 2 },
+        { "product_id": "prod_2", "quantity": 1 }
+      ],
+      "total_amount": 84.97,
+      "timestamp": "2025-01-01T10:00:00Z"
+    }
+  }'
+
+curl -X POST http://localhost:5001/produce \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "order",
+    "key": "order_2",
+    "event": {
+      "event_type": "OrderPlaced",
+      "order_id": "order_2",
+      "user_id": "user_1",
+      "items": [
+        { "product_id": "prod_3", "quantity": 1 }
+      ],
+      "total_amount": 39.99,
+      "timestamp": "2025-01-01T10:00:30Z"
+    }
+  }'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:5001/produce `
+    -H "Content-Type: application/json" `
+    -d '{
+      \"topic\": \"order\",
+      \"key\": \"order_1\",
+      \"event\": {
+        \"event_type\": \"OrderPlaced\",
+        \"order_id\": \"order_1\",
+        \"user_id\": \"user_1\",
+        \"items\": [
+          { \"product_id\": \"prod_1\", \"quantity\": 2 },
+          { \"product_id\": \"prod_2\", \"quantity\": 1 }
+        ],
+        \"total_amount\": 84.97,
+        \"timestamp\": \"2025-01-01T10:00:00Z\"
+      }
+    }'
+
+  curl.exe -X POST http://localhost:5001/produce `
+    -H "Content-Type: application/json" `
+    -d '{
+      \"topic\": \"order\",
+      \"key\": \"order_2\",
+      \"event\": {
+        \"event_type\": \"OrderPlaced\",
+        \"order_id\": \"order_2\",
+        \"user_id\": \"user_1\",
+        \"items\": [
+          { \"product_id\": \"prod_3\", \"quantity\": 1 }
+        ],
+      \"total_amount\": 39.99,
+      \"timestamp\": \"2025-01-01T10:00:30Z\"
+    }
+  }'
+  ```
 
 ### 6. Simulate Consumer Failure
 
@@ -103,9 +234,18 @@ kill -9 <PID>
 
 ### 7. Inspect Broker Internal State
 
-Refer back to **[Step 4](#4-verify-internal-broker-state)** for the debug command.
+Hit the debug endpoint:
 
-_Verify updated assignments in `consumer_groups_cache`._
+```bash
+curl http://localhost:19092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  ```
+
+> _Verify updated assignments in `consumer_groups_cache`._
 
 ### 8. Produce `order_3`
 
@@ -128,11 +268,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
-
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
     -H "Content-Type: application/json" `
@@ -154,7 +290,7 @@ curl -X POST http://localhost:5001/produce \
 
 ### 9. Simulate Consumer Recovery
 
-> _Revisit **[Section 1D → Step 4](/chapter_1/section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** for the commands to set the `APP_DB_ENDPOINT` environment variable._
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 Spin `payment-A` back up:
 
@@ -204,9 +340,18 @@ PORT=5103 \
 
 ### 10. Inspect Broker Internal State
 
-Refer back to **[Step 4](#4-verify-internal-broker-state)** for the debug command.
+Hit the debug endpoint:
 
-_Verify updated assignments in `consumer_groups_cache`._
+```bash
+curl http://localhost:19092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  ```
+
+> _Verify updated assignments in `consumer_groups_cache`._
 
 ### 11. Produce `order_4`
 
@@ -229,11 +374,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
-
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
     -H "Content-Type: application/json" `
@@ -255,7 +396,46 @@ curl -X POST http://localhost:5001/produce \
 
 ### 12. Verify All Outputs
 
-Refer back to **[Section 3A → Step 7](../section_3a/README.md#7-verify-outputs)** for the commands to verify the database, partition logs, and broker internal state.
+Verify database records:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
+  mysql -h $APP_DB_ENDPOINT -u admin \
+  --table -e "USE services_db; SELECT * FROM Orders;"
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; SELECT * FROM Orders;"
+  ```
+
+Verify on-disk partition log file contents:
+
+```bash
+for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  Get-ChildItem .var\kafkaesque\*\*\*.log | ForEach-Object {
+    $r=$_.FullName.Replace((Get-Location).Path + '\','')
+    "== $r =="; Get-Content $_ }
+  ```
+
+Verify internal broker state:
+
+```bash
+curl http://localhost:19092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  ```
 
 ### 13. Shutdown & Reset Environment
 
@@ -265,6 +445,44 @@ Make sure to shut down the processes for `payment-A` and `notification-B` in the
 Ctrl + C
 ```
 
-Refer back to **[Section 3A → Step 10](../section_3a/README.md#10-shutdown--reset-environment)** for the remaining shutdown and cleanup commands.
+Stop the Kafkaesque Broker:
+
+```bash
+Ctrl + C
+```
+
+Stop the `e_commerce_app_kafkaesque`
+
+```bash
+Ctrl + C
+```
+
+Clear out `Orders` table:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
+  mysql -h $APP_DB_ENDPOINT -u admin \
+  --table -e "USE services_db; TRUNCATE TABLE Orders;"
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; TRUNCATE TABLE Orders;"
+  ```
+
+Clean up Kafkaesque broker data:
+
+```bash
+rm -rf .var
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  Remove-Item .var -Recurse
+  ```
 
 <br>
