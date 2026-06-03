@@ -177,7 +177,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-_Verify `broker_a` shows assignments in `consumer_groups_cache` and `broker_b` shows empty `consumer_groups_cache`._
+> _Verify `broker_a` shows assignments in `consumer_groups_cache` and `broker_b` shows empty `consumer_groups_cache`._
 
 ### 7. Kill `broker_a`
 
