@@ -15,15 +15,25 @@ In this section, we scale Kafkaesque from one to **two partitions per topic** an
 
 From `~/Desktop/kafka_demo` (project root):
 
-### 1. Launch Kafkaesque Broker
+### 1. Ensure Virtual Environment is Activated
 
-> _Please make sure your virtual environment is activated. You can revisit **[Section 2A → Step 3](/chapter_2/section_2a/README.md#3-ensure-virtual-environment-is-activated)** for the exact command._
+```bash
+source venv/bin/activate
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  .\venv\Scripts\Activate.ps1
+  ```
+
+### 2. Launch Kafkaesque Broker
 
 ```bash
 python -m kafkaesque
 ```
 
-### 2. Create Kafkaesque Topics with 2 Partitions Each
+### 3. Create Kafkaesque Topics with 2 Partitions Each
 
 Create the `Order` and `Payment` data topics, this time with 2 partitions per topic (still set `RF=1` for now):
 
@@ -67,7 +77,7 @@ curl -X POST http://localhost:19092/topics \
 
 _Verify that the correct folders and partition files have been created under the `.var` directory._
 
-### 3. Verify Internal Broker State (Before Launching App)
+### 4. Verify Internal Broker State (Before Launching App)
 
 Hit the debug endpoint:
 
@@ -82,7 +92,7 @@ curl http://localhost:19092/debug
 
 _Verify the correct structure is stored under `topic_registry_cache`, and that `consumer_groups_cache` is currently empty._
 
-### 4. Launch `e_commerce_app_kafkaesque`
+### 5. Launch `e_commerce_app_kafkaesque`
 
 > _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
@@ -99,7 +109,7 @@ KAFKA_BOOTSTRAP=localhost:19092 \
   python -m e_commerce_app_kafkaesque.launcher
   ```
 
-### 5. Verify Internal Broker State (After App Launch)
+### 6. Verify Internal Broker State (After App Launch)
 
 Hit the debug endpoint:
 
@@ -112,7 +122,7 @@ curl http://localhost:19092/debug
   curl.exe http://localhost:19092/debug
   ```
 
-### 6. Produce `order_1` + `order_2`
+### 7. Produce `order_1` + `order_2`
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -190,7 +200,7 @@ curl -X POST http://localhost:5001/produce \
   }'
   ```
 
-### 7. Verify Outputs
+### 8. Verify Outputs
 
 Verify database records:
 
@@ -233,7 +243,7 @@ curl http://localhost:19092/debug
   curl.exe http://localhost:19092/debug
   ```
 
-### 8. Produce `order_3` + `order_4`
+### 9. Produce `order_3` + `order_4`
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -309,11 +319,11 @@ curl -X POST http://localhost:5001/produce \
   }'
   ```
 
-### 9. Verify Outputs
+### 10. Verify Outputs
 
-> _Refer back to **[Step 7](#7-verify-outputs)** for the commands used to query the database, inspect the partition log files, and verify the broker’s in-memory state._
+> _Refer back to **[Step 8](#8-verify-outputs)** for the commands used to query the database, inspect the partition log files, and verify the broker’s in-memory state._
 
-### 10. Shutdown & Reset Environment
+### 11. Shutdown & Reset Environment
 
 Stop the Kafkaesque Broker:
 
