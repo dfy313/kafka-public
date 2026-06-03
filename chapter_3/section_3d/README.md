@@ -38,7 +38,29 @@ From `~/Desktop/kafka_demo` (project root):
 
 ### 1. Launch Kafkaesque Brokers
 
-Refer back to **[Section 3C → Step 1](../section_3c/README.md#1-launch-kafkaesque-brokers)** for the exact commands to launch `broker_a` and `broker_b`.
+> _Please make sure your virtual environment is activated. You can revisit **[Section 3A → Step 1](/chapter_3/section_3a/README.md#1-ensure-virtual-environment-is-activated)** for the exact command._
+
+Launch `broker_a` in first terminal window:
+
+```bash
+BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  $env:BROKER_PORT="19092"; $env:BROKER_NAME="broker_a"; python -m kafkaesque
+  ```
+
+Launch `broker_b` in a second terminal window:
+
+```bash
+BROKER_PORT=29092 BROKER_NAME=broker_b python -m kafkaesque
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  $env:BROKER_PORT="29092"; $env:BROKER_NAME="broker_b"; python -m kafkaesque
+  ```
 
 ### 2. Create `broker_a` Topics with `Partitions=2` and `RF=2`
 
@@ -139,13 +161,102 @@ curl http://localhost:29092/debug
 
 ### 5. Launch `e_commerce_app_kafkaesque`
 
-Refer back to **[Section 3C → Step 5](../section_3c/README.md#5-launch-e_commerce_app_kafkaesque)** for the command to launch `e_commerce_app_kafkaesque`.
+Launch app with both `broker_a` and `broker_b` addresses passed into `KAFKA_BOOTSTRAP`:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
+  DB_HOST=$APP_DB_ENDPOINT \
+  python -m e_commerce_app_kafkaesque.launcher
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  $env:KAFKA_BOOTSTRAP = "localhost:19092,localhost:29092"
+  $env:DB_HOST = $APP_DB_ENDPOINT
+  python -m e_commerce_app_kafkaesque.launcher
+  ```
 
 ### 6. Produce `order_1` + `order_2`
 
-Refer back to **[Section 3A → Step 6](../section_3a/README.md#6-produce-order_1--order_2)** for the exact commands to produce `order_1` and `order_2`.
+```bash
+curl -X POST http://localhost:5001/produce \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "order",
+    "key": "order_1",
+    "event": {
+      "event_type": "OrderPlaced",
+      "order_id": "order_1",
+      "user_id": "user_1",
+      "items": [
+        { "product_id": "prod_1", "quantity": 2 },
+        { "product_id": "prod_2", "quantity": 1 }
+      ],
+      "total_amount": 84.97,
+      "timestamp": "2025-01-01T10:00:00Z"
+    }
+  }'
 
-### 7. Verify Partition Files
+curl -X POST http://localhost:5001/produce \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "order",
+    "key": "order_2",
+    "event": {
+      "event_type": "OrderPlaced",
+      "order_id": "order_2",
+      "user_id": "user_1",
+      "items": [
+        { "product_id": "prod_3", "quantity": 1 }
+      ],
+      "total_amount": 39.99,
+      "timestamp": "2025-01-01T10:00:30Z"
+    }
+  }'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:5001/produce `
+    -H "Content-Type: application/json" `
+    -d '{
+      \"topic\": \"order\",
+      \"key\": \"order_1\",
+      \"event\": {
+        \"event_type\": \"OrderPlaced\",
+        \"order_id\": \"order_1\",
+        \"user_id\": \"user_1\",
+        \"items\": [
+          { \"product_id\": \"prod_1\", \"quantity\": 2 },
+          { \"product_id\": \"prod_2\", \"quantity\": 1 }
+        ],
+        \"total_amount\": 84.97,
+        \"timestamp\": \"2025-01-01T10:00:00Z\"
+      }
+    }'
+
+  curl.exe -X POST http://localhost:5001/produce `
+    -H "Content-Type: application/json" `
+    -d '{
+      \"topic\": \"order\",
+      \"key\": \"order_2\",
+      \"event\": {
+        \"event_type\": \"OrderPlaced\",
+        \"order_id\": \"order_2\",
+        \"user_id\": \"user_1\",
+        \"items\": [
+          { \"product_id\": \"prod_3\", \"quantity\": 1 }
+        ],
+      \"total_amount\": 39.99,
+      \"timestamp\": \"2025-01-01T10:00:30Z\"
+    }
+  }'
+  ```
+
+### 7. Verify Partition Files (Pre-Replication)
 
 ```bash
 for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
@@ -158,17 +269,48 @@ for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
     "== $r =="; Get-Content $_ }
   ```
 
-### 8. Verify Internal State on `broker_a` and `broker_b`
+### 8. Verify Internal State on `broker_a` and `broker_b` (Pre-Replication)
 
-Refer back to **[Step 4](#4-verify-internal-state-on-broker_a-and-broker_b)** for the debug commands.
+Hit the debug endpoint:
 
-### 9. Verify Partition Files
+```bash
+curl http://localhost:19092/debug
+curl http://localhost:29092/debug
+```
 
-Refer back to **[Step 7](#7-verify-partition-files)** for the commands to display the partition files content.
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  curl.exe http://localhost:29092/debug
+  ```
 
-### 10. Verify Internal State on `broker_a` and `broker_b`
+### 9. Verify Partition Files (Post-Replication)
 
-Refer back to **[Step 4](#4-verify-internal-state-on-broker_a-and-broker_b)** for the debug commands.
+```bash
+for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  Get-ChildItem .var\kafkaesque\*\*\*.log | ForEach-Object {
+    $r=$_.FullName.Replace((Get-Location).Path + '\','')
+    "== $r =="; Get-Content $_ }
+  ```
+
+### 10. Verify Internal State on `broker_a` and `broker_b` (Post-Replication)
+
+Hit the debug endpoint:
+
+```bash
+curl http://localhost:19092/debug
+curl http://localhost:29092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  curl.exe http://localhost:29092/debug
+  ```
 
 ### 11. Kill `broker_a`
 
@@ -193,14 +335,163 @@ curl http://localhost:29092/debug
 
 ### 13. Produce `order_3` + `order_4`
 
-Refer back to **[Section 3A → Step 8](../section_3a/README.md#8-produce-order_3--order_4)** for the exact commands to produce `order_3` and `order_4`.
+```bash
+curl -X POST http://localhost:5001/produce \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "order",
+    "key": "order_3",
+    "event": {
+      "event_type": "OrderPlaced",
+      "order_id": "order_3",
+      "user_id": "user_1",
+      "items": [
+        { "product_id": "prod_4", "quantity": 1 }
+      ],
+      "total_amount": 2.13,
+      "timestamp": "2025-01-01T10:01:00Z"
+    }
+  }'
+
+curl -X POST http://localhost:5001/produce \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "order",
+    "key": "order_4",
+    "event": {
+      "event_type": "OrderPlaced",
+      "order_id": "order_4",
+      "user_id": "user_1",
+      "items": [
+        { "product_id": "prod_5", "quantity": 1 }
+      ],
+      "total_amount": 4.11,
+      "timestamp": "2025-01-01T10:01:30Z"
+    }
+  }'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:5001/produce `
+    -H "Content-Type: application/json" `
+    -d '{
+      \"topic\": \"order\",
+      \"key\": \"order_3\",
+      \"event\": {
+        \"event_type\": \"OrderPlaced\",
+        \"order_id\": \"order_3\",
+        \"user_id\": \"user_1\",
+        \"items\": [
+          { \"product_id\": \"prod_4\", \"quantity\": 1 }
+        ],
+        \"total_amount\": 2.13,
+        \"timestamp\": \"2025-01-01T10:01:00Z\"
+      }
+    }'
+
+  curl.exe -X POST http://localhost:5001/produce `
+    -H "Content-Type: application/json" `
+    -d '{
+      \"topic\": \"order\",
+      \"key\": \"order_4\",
+      \"event\": {
+        \"event_type\": \"OrderPlaced\",
+        \"order_id\": \"order_4\",
+        \"user_id\": \"user_1\",
+        \"items\": [
+          { \"product_id\": \"prod_5\", \"quantity\": 1 }
+        ],
+      \"total_amount\": 4.11,
+      \"timestamp\": \"2025-01-01T10:01:30Z\"
+    }
+  }'
+  ```
 
 ### 14. Verify Outputs
 
-Refer back to **[Section 3C → Step 9](../section_3c/#9-verify-outputs)** for the commands to verify the database, partition logs, and `broker_b`'s internal state.
+Verify database records:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
+  mysql -h $APP_DB_ENDPOINT -u admin \
+  --table -e "USE services_db; SELECT * FROM Orders;"
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; SELECT * FROM Orders;"
+  ```
+
+Verify on-disk partition log file contents:
+
+```bash
+for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  Get-ChildItem .var\kafkaesque\*\*\*.log | ForEach-Object {
+    $r=$_.FullName.Replace((Get-Location).Path + '\','')
+    "== $r =="; Get-Content $_ }
+  ```
+
+Verify `broker_b`'s internal state:
+
+```bash
+curl http://localhost:29092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:29092/debug
+  ```
 
 ### 15. Shutdown & Reset Environment
 
-Refer back to **[Section 3A → Step 10](../section_3a/README.md#10-shutdown--reset-environment)** for the shutdown and cleanup commands.
+Stop the Kafkaesque Broker:
+
+```bash
+Ctrl + C
+```
+
+Stop the `e_commerce_app_kafkaesque`
+
+```bash
+Ctrl + C
+```
+
+Clear out `Orders` table:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
+  mysql -h $APP_DB_ENDPOINT -u admin \
+  --table -e "USE services_db; TRUNCATE TABLE Orders;"
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; TRUNCATE TABLE Orders;"
+  ```
+
+Clean up Kafkaesque broker data:
+
+```bash
+rm -rf .var
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  Remove-Item .var -Recurse
+  ```
 
 <br>
