@@ -75,7 +75,7 @@ curl -X POST http://localhost:19092/topics \
     -d '{\"name\":\"__consumer_offsets\",\"partitions\":2,\"replication_factor\":1}'
   ```
 
-_Verify that the correct folders and partition files have been created under the `.var` directory._
+> _Verify that the correct folders and partition files have been created under the `.var` directory._
 
 ### 4. Verify Internal Broker State (Before Launching App)
 
@@ -90,7 +90,7 @@ curl http://localhost:19092/debug
   curl.exe http://localhost:19092/debug
   ```
 
-_Verify the correct structure is stored under `topic_registry_cache`, and that `consumer_groups_cache` is currently empty._
+> _Verify the correct structure is stored under `topic_registry_cache`, and that `consumer_groups_cache` is currently empty._
 
 ### 5. Launch `e_commerce_app_kafkaesque`
 
