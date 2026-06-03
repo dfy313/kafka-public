@@ -17,9 +17,7 @@ From `~/Desktop/kafka_demo` (project root):
 
 ### 1. Launch Kafkaesque Brokers
 
-_Please make sure your virtual environment is created and activated, and that the legacy dependencies are installed. You can revisit **[Section 1D → Step 2](/chapter_1/section_1d/README.md#2-set-up-a-virtual-environment-and-install-dependencies)** for the specific commands._
-
-_Additionally, make sure you have the `requests` library installed. You can revisit **[Section 2B (Part 3) → Step 4](/chapter_2/section_2b/README.md#4-virtual-environment-updates)** for the command._
+> _Please make sure your virtual environment is activated. You can revisit **[Section 3A → Step 1](/chapter_3/section_3a/README.md#1-ensure-virtual-environment-is-activated)** for the exact command._
 
 Launch `broker_a` in first terminal window:
 
@@ -45,7 +43,47 @@ BROKER_PORT=29092 BROKER_NAME=broker_b python -m kafkaesque
 
 ### 2. Create Topics on `broker_a`
 
-Refer back to **[Section 3A → Step 2](../section_3a/README.md#2-create-kafkaesque-topics-with-2-partitions-each)** for the exact command to create the data topics and internal `__consumer_offsets` topic.
+Create the `Order` and `Payment` data topics, this time with 2 partitions per topic (still set `RF=1` for now):
+
+```bash
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"order","partitions":2,"replication_factor":1}'
+
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"payment","partitions":2,"replication_factor":1}'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"order\",\"partitions\":2,\"replication_factor\":1}'
+
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"payment\",\"partitions\":2,\"replication_factor\":1}'
+  ```
+
+Create the internal `__consumer_offsets` topic, also with 2 partitions and `RF=1`:
+
+```bash
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"__consumer_offsets","partitions":2,"replication_factor":1}'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"__consumer_offsets\",\"partitions\":2,\"replication_factor\":1}'
+  ```
+
+> _Verify that the correct folders and partition files have been created under the `.var` directory._
 
 ### 3. Create Topics on `broker_b`
 
@@ -88,6 +126,8 @@ curl -X POST http://localhost:29092/topics \
     -d '{\"name\":\"__consumer_offsets\",\"partitions\":2,\"replication_factor\":1}'
   ```
 
+> _Verify that the correct folders and partition files have been created under the `.var` directory._
+
 ### 4. Verify Internal State on `broker_a` and `broker_b`
 
 Hit the debug endpoint:
@@ -107,7 +147,7 @@ curl http://localhost:29092/debug
 
 Launch app with both `broker_a` and `broker_b` addresses passed into `KAFKA_BOOTSTRAP`:
 
-> _Please make sure that the `APP_DB_ENDPOINT` environment variable is properly set. You can revisit **[Section 1D → Step 4](/chapter_1/section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** for the specific commands._
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
@@ -124,7 +164,18 @@ KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
 
 ### 6. Verify Internal State on `broker_a` and `broker_b`
 
-Refer back to **[Step 4](#4-verify-internal-state-on-broker_a-and-broker_b)** for the debug commands.
+Hit the debug endpoint:
+
+```bash
+curl http://localhost:19092/debug
+curl http://localhost:29092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  curl.exe http://localhost:29092/debug
+  ```
 
 _Verify `broker_a` shows assignments in `consumer_groups_cache` and `broker_b` shows empty `consumer_groups_cache`._
 
@@ -222,10 +273,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
 
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
@@ -302,7 +350,7 @@ curl -X POST http://localhost:5001/produce \
 
 Verify database records:
 
-> _Refer back to **[Section 1D → Step 4](/chapter_1/section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -310,12 +358,14 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; SELECT * FROM Orders;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $APP_DB_ENDPOINT -u admin --table -e "USE services_db; SELECT * FROM Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; SELECT * FROM Orders;"
   ```
 
-Verify on disk partition log file contents:
+Verify on-disk partition log file contents:
 
 ```bash
 for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
@@ -341,6 +391,44 @@ curl http://localhost:29092/debug
 
 ### 10. Shutdown & Reset Environment
 
-Refer back to **[Section 3A → Step 10](../section_3a/README.md#10-shutdown--reset-environment)** for the shutdown and cleanup commands.
+Stop the Kafkaesque Broker:
+
+```bash
+Ctrl + C
+```
+
+Stop the `e_commerce_app_kafkaesque`
+
+```bash
+Ctrl + C
+```
+
+Clear out `Orders` table:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
+  mysql -h $APP_DB_ENDPOINT -u admin \
+  --table -e "USE services_db; TRUNCATE TABLE Orders;"
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; TRUNCATE TABLE Orders;"
+  ```
+
+Clean up Kafkaesque broker data:
+
+```bash
+rm -rf .var
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  Remove-Item .var -Recurse
+  ```
 
 <br>
