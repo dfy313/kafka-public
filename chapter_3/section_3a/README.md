@@ -17,9 +17,7 @@ From `~/Desktop/kafka_demo` (project root):
 
 ### 1. Launch Kafkaesque Broker
 
-Please make sure your virtual environment is created and activated, and that the legacy dependencies are installed. You can revisit **[Section 1D → Step 2](/chapter_1/section_1d/README.md#2-set-up-a-virtual-environment-and-install-dependencies)** for the specific commands.
-
-Additionally, make sure you have the requests library installed. You can revisit **[Section 2B (Part 3) → Step 4](/chapter_2/section_2b/README.md#4-virtual-environment-updates)** for the command.
+> _Please make sure your virtual environment is activated. You can revisit **[Section 2A → Step 3](/chapter_2/section_2a/README.md#3-ensure-virtual-environment-is-activated)** for the exact command._
 
 ```bash
 python -m kafkaesque
@@ -86,7 +84,7 @@ _Verify the correct structure is stored under `topic_registry_cache`, and that `
 
 ### 4. Launch `e_commerce_app_kafkaesque`
 
-Please make sure that the `APP_DB_ENDPOINT` environment variable is properly set. You can revisit **[Section 1D → Step 4](/chapter_1/section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** for the specific commands.
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 KAFKA_BOOTSTRAP=localhost:19092 \
@@ -103,7 +101,16 @@ KAFKA_BOOTSTRAP=localhost:19092 \
 
 ### 5. Verify Internal Broker State (After App Launch)
 
-Refer back to **[Step 3](#3-verify-internal-broker-state-before-launching-app)** for the debug command.
+Hit the debug endpoint:
+
+```bash
+curl http://localhost:19092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  ```
 
 ### 6. Produce `order_1` + `order_2`
 
@@ -144,10 +151,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
 
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
@@ -188,8 +192,9 @@ curl -X POST http://localhost:5001/produce \
 
 ### 7. Verify Outputs
 
-Verify database records:  
-&nbsp;&nbsp;&nbsp;&nbsp;_Refer back to **[Section 1D → Step 4](/chapter_1/section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+Verify database records:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -197,12 +202,14 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; SELECT * FROM Orders;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $APP_DB_ENDPOINT -u admin --table -e "USE services_db; SELECT * FROM Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; SELECT * FROM Orders;"
   ```
 
-Verify on disk partition log file contents:
+Verify on-disk partition log file contents:
 
 ```bash
 for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
@@ -264,10 +271,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
 
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
@@ -307,11 +311,11 @@ curl -X POST http://localhost:5001/produce \
 
 ### 9. Verify Outputs
 
-Refer back to **[Step 7](#7-verify-outputs)** for the commands to verify the database, partition logs, and broker internal state.
+> _Refer back to **[Step 7](#7-verify-outputs)** for the commands used to query the database, inspect the partition log files, and verify the broker’s in-memory state._
 
 ### 10. Shutdown & Reset Environment
 
-Stop the Kafkaesque Broker(s):
+Stop the Kafkaesque Broker:
 
 ```bash
 Ctrl + C
@@ -323,8 +327,9 @@ Stop the `e_commerce_app_kafkaesque`
 Ctrl + C
 ```
 
-Clear out `Orders` table:  
-&nbsp;&nbsp;&nbsp;&nbsp;_Refer back to **[Section 1D → Step 4](/chapter_1//section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+Clear out `Orders` table:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -332,12 +337,14 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; TRUNCATE TABLE Orders;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $APP_DB_ENDPOINT -u admin --table -e "USE services_db; TRUNCATE TABLE Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; TRUNCATE TABLE Orders;"
   ```
 
-Cleanup Kafkaesque broker data:
+Clean up Kafkaesque broker data:
 
 ```bash
 rm -rf .var
