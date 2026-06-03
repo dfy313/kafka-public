@@ -28,7 +28,7 @@ In this section, we introduce **In-Sync Replicas (ISR)** and **High Watermarks (
 
 ## ✏️ Part 1 – ISR & High Watermark Implementation
 
-Inside `kafkaesque` directory, update `broker/app.py` and `broker/_util.py`.
+Inside the `kafkaesque` directory, update `broker/app.py` and `broker/_util.py`.
 
 <br>
 
