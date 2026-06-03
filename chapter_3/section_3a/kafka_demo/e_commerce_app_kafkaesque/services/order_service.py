@@ -32,4 +32,8 @@ def produce():
 
 if __name__ == "__main__":
     print(f"Starting order_service: GROUP_ID={GROUP_ID} PORT={PORT} BOOTSTRAP={KAFKA_BOOTSTRAP}")
-    app.run(host="0.0.0.0", port=PORT, use_reloader=False)
+    try:
+        app.run(host="0.0.0.0", port=PORT, use_reloader=False)
+    finally:
+        producer.close()
+        print(f"[{GROUP_ID}] producer closed")
