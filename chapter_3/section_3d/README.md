@@ -180,7 +180,7 @@ KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
 
 ### 6. Wait for a Fresh Delayed Replication Window
 
-Wait for the current delayed replication countdown and subsequent replication cycles to complete so that testing begins from the start of a new delayed replication window.
+_Wait for the current delayed replication countdown and subsequent replication cycles to complete so that testing begins from the start of a new delayed replication window._
 
 For testing convenience, the current delay period can be skipped by creating the following file:
 
