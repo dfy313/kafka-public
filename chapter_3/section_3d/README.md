@@ -301,7 +301,24 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 10. Verify Partition Files (Post-Replication)
+### 10. Wait for Replication Cycles to Begin
+
+_Wait for the current delayed replication countdown to complete and for replication cycles to resume._
+
+For testing convenience, the current delay period can be skipped by creating the following file:
+
+```bash
+touch .var/skip_replication_delay
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  New-Item .var/skip_replication_delay
+  ```
+
+> **ℹ️ Note:** When the replication thread detects `.var/skip_replication_delay`, it immediately exits the current delay period and deletes the file. This ensures that only the active delay is skipped and that future delayed replication windows remain unaffected.
+
+### 11. Verify Partition Files (Post-Replication)
 
 ```bash
 for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
@@ -314,7 +331,7 @@ for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
     "== $r =="; Get-Content $_ }
   ```
 
-### 11. Verify Internal State on `broker_a` and `broker_b` (Post-Replication)
+### 12. Verify Internal State on `broker_a` and `broker_b` (Post-Replication)
 
 Hit the debug endpoint:
 
@@ -329,7 +346,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 12. Kill `broker_a`
+### 13. Kill `broker_a`
 
 In `broker_a`'s terminal window, stop the process:
 
@@ -337,7 +354,7 @@ In `broker_a`'s terminal window, stop the process:
 Ctrl + C
 ```
 
-### 13. Verify Internal State on `broker_b`
+### 14. Verify Internal State on `broker_b`
 
 Hit the debug endpoint:
 
@@ -350,7 +367,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 14. Produce `order_3` + `order_4`
+### 15. Produce `order_3` + `order_4`
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -426,7 +443,7 @@ curl -X POST http://localhost:5001/produce \
   }'
   ```
 
-### 15. Verify Outputs
+### 16. Verify Outputs
 
 Verify database records:
 
@@ -469,7 +486,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 16. Shutdown & Reset Environment
+### 17. Shutdown & Reset Environment
 
 Stop the Kafkaesque Broker:
 
