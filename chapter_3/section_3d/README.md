@@ -178,7 +178,24 @@ KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
   python -m e_commerce_app_kafkaesque.launcher
   ```
 
-### 6. Produce `order_1` + `order_2`
+### 6. Wait for a Fresh Delayed Replication Window
+
+Wait for the current delayed replication countdown and subsequent replication cycles to complete so that testing begins from the start of a new delayed replication window.
+
+For testing convenience, the current delay period can be skipped by creating the following file:
+
+```bash
+touch .var/skip_replication_delay
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  New-Item .var/skip_replication_delay
+  ```
+
+> **ℹ️ Note:** When the replication thread detects `.var/skip_replication_delay`, it immediately exits the current delay period and deletes the file. This ensures that only the active delay is skipped and that future delayed replication windows remain unaffected.
+
+### 7. Produce `order_1` + `order_2`
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -256,7 +273,7 @@ curl -X POST http://localhost:5001/produce \
   }'
   ```
 
-### 7. Verify Partition Files (Pre-Replication)
+### 8. Verify Partition Files (Pre-Replication)
 
 ```bash
 for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
@@ -269,7 +286,7 @@ for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
     "== $r =="; Get-Content $_ }
   ```
 
-### 8. Verify Internal State on `broker_a` and `broker_b` (Pre-Replication)
+### 9. Verify Internal State on `broker_a` and `broker_b` (Pre-Replication)
 
 Hit the debug endpoint:
 
@@ -284,7 +301,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 9. Verify Partition Files (Post-Replication)
+### 10. Verify Partition Files (Post-Replication)
 
 ```bash
 for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
@@ -297,7 +314,7 @@ for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
     "== $r =="; Get-Content $_ }
   ```
 
-### 10. Verify Internal State on `broker_a` and `broker_b` (Post-Replication)
+### 11. Verify Internal State on `broker_a` and `broker_b` (Post-Replication)
 
 Hit the debug endpoint:
 
@@ -312,7 +329,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 11. Kill `broker_a`
+### 12. Kill `broker_a`
 
 In `broker_a`'s terminal window, stop the process:
 
@@ -320,7 +337,7 @@ In `broker_a`'s terminal window, stop the process:
 Ctrl + C
 ```
 
-### 12. Verify Internal State on `broker_b`
+### 13. Verify Internal State on `broker_b`
 
 Hit the debug endpoint:
 
@@ -333,7 +350,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 13. Produce `order_3` + `order_4`
+### 14. Produce `order_3` + `order_4`
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -409,7 +426,7 @@ curl -X POST http://localhost:5001/produce \
   }'
   ```
 
-### 14. Verify Outputs
+### 15. Verify Outputs
 
 Verify database records:
 
@@ -452,7 +469,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 15. Shutdown & Reset Environment
+### 16. Shutdown & Reset Environment
 
 Stop the Kafkaesque Broker:
 
