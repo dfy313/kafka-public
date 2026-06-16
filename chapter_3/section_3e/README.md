@@ -431,7 +431,7 @@ curl http://localhost:29092/debug
 
 ### 12. Wait for Event Replication Cycles
 
-_Wait for the current delayed replication countdown to complete and for the event replication cycles to complete._
+_Wait for the current delayed replication countdown to complete and for the event replication cycles to begin._
 
 For testing convenience, the current delay period can be skipped by creating the following file:
 
