@@ -163,9 +163,9 @@ KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
   python -m e_commerce_app_kafkaesque.launcher
   ```
 
-### 5. Verify Internal State on `broker_a` and `broker_b`
+### 5. Verify Internal State on `broker_a` and `broker_b` (Before Initial Replication)
 
-Hit the debug endpoint:
+Before any replication cycles occur, hit the debug endpoint on each broker to establish a baseline of their internal state:
 
 ```bash
 curl http://localhost:19092/debug
@@ -178,7 +178,9 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 6. Produce `order_1` before `minISR` is Satisfied
+### 6. Produce `order_1` (Before Initial Replication)
+
+Before any replication cycles occur, produce an order and observe how the system behaves while `minISR` requirements have not yet been satisfied:
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -221,7 +223,24 @@ curl -X POST http://localhost:5001/produce \
     }'
   ```
 
-### 7. Verify Internal State on `broker_a` and `broker_b`
+### 7. Wait for Initial Replication Cycles
+
+_Wait for the current delayed replication countdown to complete and for replication cycles to begin._
+
+For testing convenience, the current delay period can be skipped by creating the following file:
+
+```bash
+touch .var/skip_replication_delay
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  New-Item .var/skip_replication_delay
+  ```
+
+> **ℹ️ Note:** When the replication thread detects `.var/skip_replication_delay`, it immediately exits the current delay period and deletes the file. This ensures that only the active delay is skipped and that future delayed replication windows remain unaffected.
+
+### 8. Verify Internal State on `broker_a` and `broker_b` (After Initial Replication)
 
 Hit the debug endpoint:
 
@@ -236,7 +255,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 8. Produce All 4 Test Orders (`order_1`, `order_2`, `order_3` and `order_4`)
+### 9. Produce All 4 Test Orders (After Initial Replication)
 
 ```bash
 curl -X POST http://localhost:5001/produce \
@@ -382,7 +401,7 @@ curl -X POST http://localhost:5001/produce \
   }'
   ```
 
-### 9. Verify Partition Files
+### 10. Verify Partition Files (Before Event Replication)
 
 ```bash
 for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
@@ -395,7 +414,7 @@ for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
     "== $r =="; Get-Content $_ }
   ```
 
-### 10. Verify Internal State on `broker_a` and `broker_b`
+### 11. Verify Internal State on `broker_a` and `broker_b` (Before Event Replication)
 
 Hit the debug endpoint:
 
@@ -410,7 +429,24 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 11. Verify All Outputs:
+### 12. Wait for Event Replication Cycles
+
+_Wait for the current delayed replication countdown to complete and for the event replication cycles to complete._
+
+For testing convenience, the current delay period can be skipped by creating the following file:
+
+```bash
+touch .var/skip_replication_delay
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  New-Item .var/skip_replication_delay
+  ```
+
+> **ℹ️ Note:** When the replication thread detects `.var/skip_replication_delay`, it immediately exits the current delay period and deletes the file. This ensures that only the active delay is skipped and that future delayed replication windows remain unaffected.
+
+### 13. Verify All Outputs (After Event Replication)
 
 Verify database records:
 
@@ -455,7 +491,7 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 12. Shutdown & Reset Environment
+### 14. Shutdown & Reset Environment
 
 Stop the Kafkaesque Brokers:
 
