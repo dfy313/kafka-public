@@ -131,17 +131,25 @@ _Open up `zoo.cfg` and update `dataDir=./.var/zookeeper`_
 
 ### 5. Ensure Port `2181` is Available for ZooKeeper
 
-Before launching ZooKeeper, ensure that port `2181` is not already in use.  
-If a process is running on that port, terminate it before proceeding.
+Before launching ZooKeeper, ensure that port `2181` is not already in use:
 
 ```bash
 lsof -i :2181
-kill -9 <PID>
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   netstat -ano | findstr :2181
+  ```
+
+If a process is running on that port, terminate it before proceeding:
+
+```bash
+kill -9 <PID>
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
   Stop-Process -Id <PID> -Force
   ```
 
