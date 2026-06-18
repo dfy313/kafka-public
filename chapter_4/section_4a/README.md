@@ -75,8 +75,8 @@ sdk install java 17.0.17-tem
 
 After installation:
 
-- Restart your terminal / VS Code window.
-- Re-run the verification commands from **[Step 1](#1-verify-java-installation)** to confirm everything is set up correctly.
+- _Restart your terminal / VS Code window._
+- _Re-run the verification commands from **[Step 1](#1-verify-java-installation)** to confirm everything is set up correctly._
 
 ### 3. ZooKeeper `3.8.4` Download
 
