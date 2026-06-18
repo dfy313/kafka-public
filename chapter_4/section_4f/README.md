@@ -61,12 +61,33 @@ From `~/Desktop/kafka_demo` (project root):
 
 ### 1. Start `zkServer` & `zkCli`
 
-Refer back to **[Section 4A (Part 1) → Step 6](/chapter_4/section_4a/README.md#6-start-zkServer--zkCli)** for the commands to start ZooKeeper server and CLI.
+Start the ZooKeeper Server in foreground:
+
+```bash
+./apache-zookeeper-3.8.4-bin/bin/zkServer.sh start-foreground
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  .\apache-zookeeper-3.8.4-bin\bin\zkServer.cmd
+  ```
+
+> _Verify that the `.var/zookeeper` folder is created_
+
+Start ZooKeeper CLI:
+
+```bash
+./apache-zookeeper-3.8.4-bin/bin/zkCli.sh
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  .\apache-zookeeper-3.8.4-bin\bin\zkCli.cmd
+  ```
 
 ### 2. Launch Kafkaesque `broker_a`
 
-_Please make sure your virtual environment is activated, and that the dependencies are installed._  
-_You can revisit **[Section 4C → Step 2](/chapter_4/section_4c/README.md#2-activate-the-virtual-environment)** for the specific commands._
+> _Please make sure your virtual environment is activated. You can refer back to **[Section 4B → Step 3](/chapter_4/section_4b/README.md#3-ensure-virtual-environment-is-activated)** for the exact command._
 
 ```bash
 BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
@@ -112,20 +133,19 @@ curl -X POST http://localhost:19092/topics \
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
   ```bash
   curl.exe -X POST http://localhost:19092/topics `
     -H 'content-type: application/json' `
     -d '{\"name\":\"__consumer_offsets\",\"partitions\":2,\"replication_factor\":2}'
   ```
 
-_Verify that the correct folders and partition files have been created under the `.var` directory._
+> _Verify that the correct folders and partition files have been created under the `.var` directory._
 
 ### 4. Launch `e_commerce_app_kafkaesque`
 
 Launch app with both `broker_a` and `broker_b` addresses passed into `KAFKA_BOOTSTRAP`:
 
-> _Please make sure that the `APP_DB_ENDPOINT` environment variable is properly set. You can revisit **[Section 1D → Step 4](/chapter_1/section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** for the specific commands._
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
@@ -192,10 +212,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
 
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
@@ -249,8 +266,7 @@ curl http://localhost:19092/debug
 
 ### 8. Launch Kafkaesque `broker_b`
 
-_Please make sure your virtual environment is activated, and that the dependencies are installed._  
-_You can revisit **[Section 4C → Step 2](/chapter_4/section_4c/README.md#2-activate-the-virtual-environment)** for the specific commands._
+> _Please make sure your virtual environment is activated. You can refer back to **[Section 4B → Step 3](/chapter_4/section_4b/README.md#3-ensure-virtual-environment-is-activated)** for the exact command._
 
 ```bash
 BROKER_PORT=29092 BROKER_NAME=broker_b python -m kafkaesque
@@ -314,10 +330,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
-  - Use `curl.exe` instead of `curl` (to avoid the PowerShell alias)
-  - Use backticks (`` ` ``) for multiline commands—**not** backslashes (`\`)
-  - Any quotes inside your JSON payload must be escaped (use `\"` instead of `"`)
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
 
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
@@ -370,21 +383,19 @@ curl http://localhost:29092/debug
   curl.exe http://localhost:29092/debug
   ```
 
-### 12. Shut Down Kafkaesque Brokers and `e_commerce_app_kafkaesque`
+### 12. Shutdown & Reset Environment
 
-In the terminal windows running `broker_a` and `broker_b`, stop each process:
-
-```bash
-Ctrl + C
-```
-
-Stop the `e_commerce_app_kafkaesque` process:
+Stop the Kafkaesque brokers:
 
 ```bash
 Ctrl + C
 ```
 
-### 13. Shut Down ZooKeeper CLI & Server
+Stop the `e_commerce_app_kafkaesque`
+
+```bash
+Ctrl + C
+```
 
 In the terminal windows running `zkCli` and `zkServer`, stop each process:
 
@@ -394,7 +405,7 @@ Ctrl + C
 
 > _Press `Y` if prompted to terminate batches_
 
-### 14. Clean Up Kafkaesque & ZooKeeper State
+Clean up Kafkaesque and ZooKeeper state:
 
 ```bash
 rm -rf .var
@@ -405,9 +416,9 @@ rm -rf .var
   Remove-Item .var -Recurse
   ```
 
-### 15. Clean Up `Orders` Table
+Clear out `Orders` table:
 
-> _Refer back to **[Section 1D → Step 4](/chapter_1//section_1d/README.md#4-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
@@ -415,9 +426,11 @@ docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
   --table -e "USE services_db; TRUNCATE TABLE Orders;"
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**, run the command on a single line (no line breaks):
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
-  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 mysql -h $APP_DB_ENDPOINT -u admin --table -e "USE services_db; TRUNCATE TABLE Orders;"
+  docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 `
+    mysql -h $APP_DB_ENDPOINT -u admin `
+    --table -e "USE services_db; TRUNCATE TABLE Orders;"
   ```
 
 <br>
