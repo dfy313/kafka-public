@@ -45,7 +45,7 @@ touch kafkaesque/broker/router.py
   New-Item kafkaesque/broker/router.py
   ```
 
-_Paste in `router.py` starter code._
+> _Paste in `router.py` starter code._
 
 <br>
 
