@@ -95,7 +95,7 @@ curl -X POST http://localhost:19092/topics \
     -d '{\"name\":\"__consumer_offsets\",\"partitions\":2,\"replication_factor\":2}'
   ```
 
-_Verify that the correct folders and partition files have been created under the `.var` directory._
+> _Verify that the correct folders and partition files have been created under the `.var` directory._
 
 ### 4. Launch `e_commerce_app_kafkaesque`
 
