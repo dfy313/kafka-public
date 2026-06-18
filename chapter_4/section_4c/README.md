@@ -268,7 +268,7 @@ Stop the Kafkaesque brokers:
 Ctrl + C
 ```
 
-Stop the `e_commerce_app_kafkaesque`
+Stop the `e_commerce_app_kafkaesque`:
 
 ```bash
 Ctrl + C

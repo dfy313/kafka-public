@@ -227,7 +227,7 @@ Stop the Kafkaesque `broker_a`:
 Ctrl + C
 ```
 
-Stop the `e_commerce_app_kafkaesque`
+Stop the `e_commerce_app_kafkaesque`:
 
 ```bash
 Ctrl + C
