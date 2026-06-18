@@ -26,16 +26,37 @@ touch kafkaesque/zookeeper/partition_assignment_publisher.py
   New-Item kafkaesque/zookeeper/partition_assignment_publisher.py
   ```
 
-_Paste in `partition_assignment_publisher.py` starter code._
+> _Paste in `partition_assignment_publisher.py` starter code._
 
 ### 2. Start `zkServer` & `zkCli`
 
-Refer back to **[Section 4A (Part 1) → Step 6](/chapter_4/section_4a/README.md#6-start-zkServer--zkCli)** for the commands to start ZooKeeper server and CLI.
+Start the ZooKeeper Server in foreground:
+
+```bash
+./apache-zookeeper-3.8.4-bin/bin/zkServer.sh start-foreground
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  .\apache-zookeeper-3.8.4-bin\bin\zkServer.cmd
+  ```
+
+> _Verify that the `.var/zookeeper` folder is created_
+
+Start ZooKeeper CLI:
+
+```bash
+./apache-zookeeper-3.8.4-bin/bin/zkCli.sh
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  .\apache-zookeeper-3.8.4-bin\bin\zkCli.cmd
+  ```
 
 ### 3. Launch Kafkaesque `broker_a`
 
-_Please make sure your virtual environment is activated, and that the dependencies are installed._  
-_You can revisit **[Section 4C → Step 2](/chapter_4/section_4c/README.md#2-activate-the-virtual-environment)** for the specific commands._
+> _Please make sure your virtual environment is activated. You can refer back to **[Section 4B → Step 3](/chapter_4/section_4b/README.md#3-ensure-virtual-environment-is-activated)** for the exact command._
 
 ```bash
 BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
@@ -48,10 +69,46 @@ BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
 
 ### 4. Create Topics on Controller (`broker_a`)
 
-Refer back to **[Section 4C → Step 5](/chapter_4/section_4c/README.md#5-create-topics-on-controller-broker_a)** for the commands to create:
+Create the `Order` and `Payment` data topics with `partitions=2`, `RF=2` and `minISR=2`.
 
-- Data topics with `partitions=2`, `replication_factor=2` and `minISR=2`
-- Internal `__consumer_offsets` topic with `partitions=2` and `replication_factor=2` (no `minISR`)
+```bash
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"order","partitions":2,"replication_factor":2,"minISR":2}'
+
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"payment","partitions":2,"replication_factor":2,"minISR":2}'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+
+  ```bash
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"order\",\"partitions\":2,\"replication_factor\":2,\"minISR\":2}'
+
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"payment\",\"partitions\":2,\"replication_factor\":2,\"minISR\":2}'
+  ```
+
+Create the internal `__consumer_offsets` topic with `partitions=2`, `RF=2` and no `minISR` value.
+
+```bash
+curl -X POST http://localhost:19092/topics \
+  -H 'content-type: application/json' \
+  -d '{"name":"__consumer_offsets","partitions":2,"replication_factor":2}'
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe -X POST http://localhost:19092/topics `
+    -H 'content-type: application/json' `
+    -d '{\"name\":\"__consumer_offsets\",\"partitions\":2,\"replication_factor\":2}'
+  ```
+
+> _Verify that the correct folders and partition files have been created under the `.var` directory._
 
 ### 5. Verify Internal State on `broker_a`
 
@@ -83,16 +140,39 @@ get /partition_assignments/order/1
 
 ### 7. Launch `e_commerce_app_kafkaesque`
 
-Refer back to **[Section 4C → Step 8](/chapter_4/section_4c/README.md#8-launch-e_commerce_app_kafkaesque)** for the command to launch `e_commerce_app_kafkaesque`.
+Launch app with both `broker_a` and `broker_b` addresses passed into `KAFKA_BOOTSTRAP`:
+
+> _Refer back to **[Section 1D → Step 6](/chapter_1/section_1d/README.md#6-ensure-the-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+
+```bash
+KAFKA_BOOTSTRAP=localhost:19092,localhost:29092 \
+  DB_HOST=$APP_DB_ENDPOINT \
+  python -m e_commerce_app_kafkaesque.launcher
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  $env:KAFKA_BOOTSTRAP = "localhost:19092,localhost:29092"
+  $env:DB_HOST = $APP_DB_ENDPOINT
+  python -m e_commerce_app_kafkaesque.launcher
+  ```
 
 ### 8. Verify Internal State on `broker_a`
 
-Refer back to **[Step 5](#5-verify-internal-state-on-broker_a)** for the debug command.
+Hit the debug endpoint:
+
+```bash
+curl http://localhost:19092/debug
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  ```
 
 ### 9. Launch Kafkaesque `broker_b`
 
-_Please make sure your virtual environment is activated, and that the dependencies are installed._  
-_You can revisit **[Section 4C → Step 2](/chapter_4/section_4c/README.md#2-activate-the-virtual-environment)** for the specific commands._
+> _Please make sure your virtual environment is activated. You can refer back to **[Section 4B → Step 3](/chapter_4/section_4b/README.md#3-ensure-virtual-environment-is-activated)** for the exact command._
 
 ```bash
 BROKER_PORT=29092 BROKER_NAME=broker_b python -m kafkaesque
@@ -128,25 +208,32 @@ Ctrl + C
 
 ### 12. Verify Internal State on `broker_a`
 
-Refer back to **[Step 5](#5-verify-internal-state-on-broker_a)** for the debug command.
+Hit the debug endpoint:
 
-### 13. Shut Down `broker_a` and `e_commerce_app_kafkaesque`
+```bash
+curl http://localhost:19092/debug
+```
 
-Stop the `broker_a` process:
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  curl.exe http://localhost:19092/debug
+  ```
+
+### 13. Shutdown & Reset Environment
+
+Stop the Kafkaesque `broker_a`:
 
 ```bash
 Ctrl + C
 ```
 
-Stop the `e_commerce_app_kafkaesque` process:
+Stop the `e_commerce_app_kafkaesque`
 
 ```bash
 Ctrl + C
 ```
 
-### 14. Inspect ZooKeeper State
-
-From the ZooKeeper CLI:
+Verify the final state from the ZooKeeper CLI:
 
 ```bash
 ls /
@@ -157,8 +244,6 @@ get /partition_assignments/order/0
 get /partition_assignments/order/1
 ```
 
-### 15. Shut Down ZooKeeper CLI & Server
-
 In the terminal windows running `zkCli` and `zkServer`, stop each process:
 
 ```bash
@@ -167,7 +252,7 @@ Ctrl + C
 
 > _Press `Y` if prompted to terminate batches_
 
-### 16. Clean Up Kafkaesque & ZooKeeper State
+Clean up Kafkaesque and ZooKeeper state:
 
 ```bash
 rm -rf .var
