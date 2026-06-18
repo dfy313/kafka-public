@@ -22,7 +22,6 @@ source venv/bin/activate
 ```
 
 - <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
-
   ```bash
   .\venv\Scripts\Activate.ps1
   ```
