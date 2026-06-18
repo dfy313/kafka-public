@@ -175,7 +175,7 @@ curl -X POST http://localhost:5001/produce \
   }'
 ```
 
-- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell:**
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
   ```bash
   curl.exe -X POST http://localhost:5001/produce `
     -H "Content-Type: application/json" `
