@@ -127,7 +127,7 @@ cp apache-zookeeper-3.8.4-bin/conf/zoo_sample.cfg apache-zookeeper-3.8.4-bin/con
   Copy-Item apache-zookeeper-3.8.4-bin/conf/zoo_sample.cfg apache-zookeeper-3.8.4-bin/conf/zoo.cfg
   ```
 
-_Open up `zoo.cfg` and update `dataDir=./.var/zookeeper`_
+> _Open up `zoo.cfg` and update `dataDir=./.var/zookeeper`_
 
 ### 5. Ensure Port `2181` is Available for ZooKeeper
 
@@ -224,7 +224,7 @@ touch kafkaesque/zookeeper/znodes.py
   New-Item kafkaesque/zookeeper/znodes.py
   ```
 
-_Paste in `znodes.py` starter code._
+> _Paste in `znodes.py` starter code._
 
 ### 3. Create `ControllerElection` Class
 
@@ -237,15 +237,13 @@ touch kafkaesque/zookeeper/controller_election.py
   New-Item kafkaesque/zookeeper/controller_election.py
   ```
 
-_Paste in `controller_election.py` starter code._
+> _Paste in `controller_election.py` starter code._
 
 ### 4. Ensure `zkServer` & `zkCli` are Running
 
-Refer back to **[Part 1 - Step 6](#6-start-zkServer--zkCli)** for the commands to start ZooKeeper server and CLI.
+Refer back to **[Part 1 → Step 6](#6-start-zkServer--zkCli)** for the commands to start ZooKeeper server and CLI.
 
-### 5. Virtual Environment Updates
-
-Make sure your virtual environment is activated:
+### 5. Ensure Virtual Environment is Activated
 
 ```bash
 source venv/bin/activate
@@ -256,13 +254,17 @@ source venv/bin/activate
   .\venv\Scripts\Activate.ps1
   ```
 
+### 6. Virtual Environment Updates
+
 Install `kazoo` library into your virtual environment:
 
 ```bash
 pip install kazoo
 ```
 
-### 6. Launch Kafkaesque `broker_a`
+### 7. Launch Kafkaesque `broker_a`
+
+> _Please make sure your virtual environment is activated. You can refer back to **[Part 2 → Step 5](#5-ensure-virtual-environment-is-activated)** for the exact command._
 
 ```bash
 BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
@@ -273,17 +275,19 @@ BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
   $env:BROKER_PORT="19092"; $env:BROKER_NAME="broker_a"; python -m kafkaesque
   ```
 
-### 7. Inspect ZooKeeper State
+### 8. Inspect ZooKeeper State
 
 From the ZooKeeper CLI:
 
 ```bash
 ls /
 ls /election
-get /election/<random_id>__lock__0000000000
+get /election/<RANDOM_ID>__lock__0000000000
 ```
 
-### 8. Launch Kafkaesque `broker_b`
+### 9. Launch Kafkaesque `broker_b`
+
+> _Please make sure your virtual environment is activated. You can refer back to **[Part 2 → Step 5](#5-ensure-virtual-environment-is-activated)** for the exact command._
 
 ```bash
 BROKER_PORT=29092 BROKER_NAME=broker_b python -m kafkaesque
@@ -294,16 +298,16 @@ BROKER_PORT=29092 BROKER_NAME=broker_b python -m kafkaesque
   $env:BROKER_PORT="29092"; $env:BROKER_NAME="broker_b"; python -m kafkaesque
   ```
 
-### 9. Inspect ZooKeeper State
+### 10. Inspect ZooKeeper State
 
 From the ZooKeeper CLI:
 
 ```bash
 ls /election
-get /election/<random_id>__lock__0000000001
+get /election/<RANDOM_ID>__lock__0000000001
 ```
 
-### 10. Kill the Controller (`broker_a`)
+### 11. Kill the Controller (`broker_a`)
 
 In `broker_a`'s terminal window, stop the process:
 
@@ -311,7 +315,7 @@ In `broker_a`'s terminal window, stop the process:
 Ctrl + C
 ```
 
-### 11. Inspect ZooKeeper State
+### 12. Inspect ZooKeeper State
 
 From the ZooKeeper CLI:
 
@@ -319,38 +323,41 @@ From the ZooKeeper CLI:
 ls /election
 ```
 
-### 12. Bring `broker_a` back Online
+### 13. Bring `broker_a` back Online
 
-Refer back to **[Part 2 - Step 6](#6-launch-kafkaesque-broker_a)** for the command to launch `broker_a`.
+> _Please make sure your virtual environment is activated. You can refer back to **[Part 2 → Step 5](#5-ensure-virtual-environment-is-activated)** for the exact command._
 
-### 13. Inspect ZooKeeper State
+```bash
+BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
+```
+
+- <img src="https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/powershell_128.svg" width="18" /> On **Windows PowerShell**:
+  ```bash
+  $env:BROKER_PORT="19092"; $env:BROKER_NAME="broker_a"; python -m kafkaesque
+  ```
+
+### 14. Inspect ZooKeeper State
 
 From the ZooKeeper CLI:
 
 ```bash
 ls /election
-get /election/<random_id>__lock__0000000002
+get /election/<RANDOM_ID>__lock__0000000002
 ```
 
-### 14. Shut Down Both Kafkaesque Brokers
+### 15. Shutdown & Reset Environment
 
-In `broker_b`'s terminal window, stop the process:
+Stop the Kafkaesque brokers, beginning with `broker_b` and then `broker_a`:
 
 ```bash
 Ctrl + C
 ```
 
-In `broker_a`'s terminal window, stop the process:
+Verify the final election state from the ZooKeeper CLI:
 
 ```bash
-Ctrl + C
+ls /election
 ```
-
-### 15. Inspect ZooKeeper State
-
-Refer back to **[Part 2 - Step 11](#11-inspect-zookeeper-state)** for the command to list the `/election` znode.
-
-### 16. Shut Down ZooKeeper CLI & Server
 
 In the terminal windows running `zkCli` and `zkServer`, stop each process:
 
@@ -360,7 +367,7 @@ Ctrl + C
 
 > _Press `Y` if prompted to terminate batches_
 
-### 17. Clean Up Kafkaesque & ZooKeeper State
+Clean up Kafkaesque and ZooKeeper state:
 
 ```bash
 rm -rf .var
