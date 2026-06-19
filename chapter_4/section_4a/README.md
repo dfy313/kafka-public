@@ -264,8 +264,6 @@ pip install kazoo
 
 ### 7. Launch Kafkaesque `broker_a`
 
-> _Please make sure your virtual environment is activated. You can refer back to **[Part 2 → Step 5](#5-ensure-virtual-environment-is-activated)** for the exact command._
-
 ```bash
 BROKER_PORT=19092 BROKER_NAME=broker_a python -m kafkaesque
 ```
