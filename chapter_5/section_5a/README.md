@@ -80,7 +80,7 @@ touch LICENSE
   New-Item LICENSE
   ```
 
-_Paste in `LICENSE` starter code._
+> _Paste in `LICENSE` starter code._
 
 ### 3. Create `pyproject` Configuration File
 
@@ -93,7 +93,7 @@ touch pyproject.toml
   New-Item pyproject.toml
   ```
 
-_Paste in `pyproject.toml` starter code._
+> _Paste in `pyproject.toml` starter code._
 
 ### 4. Create `README` File
 
@@ -106,7 +106,7 @@ touch README.md
   New-Item README.md
   ```
 
-_Paste in `README.md` starter code._
+> _Paste in `README.md` starter code._
 
 ### 5. Build & Publish to TestPyPI
 
@@ -152,7 +152,7 @@ touch e_commerce_app_kafkaesque/requirements.txt
   New-Item e_commerce_app_kafkaesque/requirements.txt
   ```
 
-_Paste in `requirements.txt` starter code._
+> _Paste in `requirements.txt` starter code._
 
 <br>
 
