@@ -176,6 +176,8 @@ code -n ~/Desktop/kafkaesque_pypi_release_test
 
 ### 2. Set Up Test Virtual Environment
 
+> <span style="color: gray;">📂 **Working directory:** `~/Desktop/kafkaesque_pypi_release_test`</span>
+
 Create test virtual environment:
 
 ```bash
