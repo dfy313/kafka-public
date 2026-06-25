@@ -577,7 +577,7 @@ for f in .var/kafkaesque/*/*/*.log; do echo "== $f =="; cat "$f"; done
 
 > <span style="color: gray;">📂 **Working directory:** `~/Desktop/kafkaesque_pypi_release_test`</span>
 
-> _Refer back to **[Step 11](#6-ensure-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
+_Refer back to **[Step 11](#11-ensure-app_db_endpoint-environment-variable-is-set)** to set the `APP_DB_ENDPOINT` environment variable._
 
 ```bash
 docker run --rm -e MYSQL_PWD='Password100!' mysql:8.0 \
