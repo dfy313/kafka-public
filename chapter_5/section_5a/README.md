@@ -265,7 +265,7 @@ Start ZooKeeper CLI:
 
 > <span style="color: gray;">📂 **Working directory:** `~/Desktop/kafkaesque_pypi_release_test`</span>
 
-> _Please make sure your test virtual environment is activated. You can refer back to **[Step 3](#3-activate-test-virtual-environment)** for the exact command._
+_Please make sure your test virtual environment is activated. You can refer back to **[Step 3](#3-activate-test-virtual-environment)** for the exact command._
 
 ```bash
 BROKER_PORT=19092 BROKER_NAME=broker_a kafkaesque
@@ -280,7 +280,7 @@ BROKER_PORT=19092 BROKER_NAME=broker_a kafkaesque
 
 > <span style="color: gray;">📂 **Working directory:** `~/Desktop/kafkaesque_pypi_release_test`</span>
 
-> _Please make sure your test virtual environment is activated. You can refer back to **[Step 3](#3-activate-test-virtual-environment)** for the exact command._
+_Please make sure your test virtual environment is activated. You can refer back to **[Step 3](#3-activate-test-virtual-environment)** for the exact command._
 
 ```bash
 BROKER_PORT=29092 BROKER_NAME=broker_b kafkaesque
