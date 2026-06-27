@@ -95,10 +95,14 @@ def start_replication(log_end_offsets, peer_broker_view):
             #################################################
             ### 🧪 TESTING ONLY — DELAYED REPLICATION (5 MIN)
             #################################################
+            # skip_replication_delay = Path(".var/skip_replication_delay")
             # if _cycle % 10 == 0: # Delay every 10th cycle
             #     for t in range(300, 0, -15):
             #         print(f"[REPLICATION] ⏳ {t}s remaining")
             #         if stop.wait(15): return
+            #         if skip_replication_delay.exists():
+            #             skip_replication_delay.unlink()
+            #             break
             # _cycle += 1
             #################################################
             stop.wait(5) # Avoid busy loop
