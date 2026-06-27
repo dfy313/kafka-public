@@ -41,7 +41,7 @@ touch e_commerce_app_kafkaesque/dockerfile
   New-Item e_commerce_app_kafkaesque/dockerfile
   ```
 
-_Paste in `dockerfile` starter code._
+> _Paste in `dockerfile` starter code._
 
 ### 2. Build & Push to Docker Hub
 
