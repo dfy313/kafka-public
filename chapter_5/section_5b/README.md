@@ -76,7 +76,7 @@ docker buildx create --name multi --use --bootstrap
 
 Build the multi-platform Docker image and push it to Docker Hub:
 
-> _Replace `<YOUR_DOCKERHUB_USERNAME>` with your own username)_
+> _Replace `<YOUR_DOCKERHUB_USERNAME>` with your own username_
 
 ```bash
 docker buildx build \
