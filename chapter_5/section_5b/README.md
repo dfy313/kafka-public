@@ -529,7 +529,7 @@ Inside the **Kafkaesque EC2** instance:
   exit
   ```
 
-### 11. Destroy Terraform
+### 11. Destroy `full-stack-kafkaesque` Terraform Environment
 
 Navigate into `terraform/full-stack-kafkaesque`:
 
@@ -537,7 +537,23 @@ Navigate into `terraform/full-stack-kafkaesque`:
 cd terraform/full-stack-kafkaesque
 ```
 
-Tear down environment:
+Destroy all provisioned resources:
+
+```bash
+terraform destroy
+```
+
+> _When prompted, type `yes` to confirm the destroy plan._
+
+### 12. Destroy Standalone RDS Terraform Environment
+
+Navigate into `terraform/rds`:
+
+```bash
+cd ../rds
+```
+
+Destroy the provisioned RDS infrastructure:
 
 ```bash
 terraform destroy
