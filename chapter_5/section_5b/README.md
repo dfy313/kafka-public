@@ -74,7 +74,7 @@ Create new `buildx`:
 docker buildx create --name multi --use --bootstrap
 ```
 
-Build + push:
+Build the multi-platform Docker image and push it to Docker Hub:
 
 > _Replace `<YOUR_DOCKERHUB_USERNAME>` with your own username)_
 
@@ -118,7 +118,7 @@ touch terraform/full-stack-kafkaesque/main.tf
   New-Item terraform/full-stack-kafkaesque/main.tf
   ```
 
-_Paste in the Terraform starter code._
+> _Paste in the Terraform starter code._
 
 <br>
 
